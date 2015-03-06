@@ -1,0 +1,63 @@
+.ri-grid ul li,
+.ri-grid ul li a{
+	width: 200px;
+	height: 200px;
+}
+
+.ri-grid ul li a img{
+	width: 100%;
+}
+
+.ri-grid ul {
+  margin: 0 auto;
+  width: 1800px;
+  overflow: hidden;
+}
+
+.ri-grid {
+  height: 800px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.vertical-center {
+  top: 30%;
+}
+
+.img-hover .hover-icon:before {
+  text-align: center;
+}
+
+
+.flexnav-menu-button {
+	display: none;
+}
+
+
+.flexnav li {
+	overflow: visible;
+	display: block;
+	position: relative;
+}
+
+.flexnav li a {
+	border-bottom: none;
+}
+
+.flexnav .touch-button {
+	display: none;
+}
+
+.flexnav ul {
+	position: absolute;
+	width: 150px;
+}
+
+.flexnav li ul {
+  display: none;
+}
+
+.flexnav ul li ul {
+	margin-left: 100%;
+	top: 0;
+}

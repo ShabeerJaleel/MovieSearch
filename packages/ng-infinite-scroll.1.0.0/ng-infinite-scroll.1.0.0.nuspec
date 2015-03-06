@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>ng-infinite-scroll</id>
+    <version>1.0.0</version>
+    <title>ngInfiniteScroll</title>
+    <authors>Samuel ROZE (sroze)</authors>
+    <owners>Samuel ROZE (sroze)</owners>
+    <licenseUrl>https://github.com/sroze/ngInfiniteScroll/blob/master/LICENSE</licenseUrl>
+    <projectUrl>http://sroze.github.io/ngInfiniteScroll/</projectUrl>
+    <iconUrl>http://sroze.github.io/ngInfiniteScroll/images/logo-resized.png?1361649002</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>ngInfiniteScroll is a directive for AngularJS to evaluate an expression when the bottom of the directive's element approaches the bottom of the browser window, which can be used to implement infinite scrolling.</description>
+    <tags>ngInfiniteScroll angular</tags>
+  </metadata>
+</package>

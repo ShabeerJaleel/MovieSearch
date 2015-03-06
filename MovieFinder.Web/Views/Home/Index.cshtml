@@ -1,0 +1,186 @@
+﻿@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	    <title>MovieTube - Simple and easy way to watch Indian Movies</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <link rel="stylesheet" href="/Content/css/bootstrap.min.css" type="text/css">
+	    <link rel="stylesheet" href="/Content/css/bootstrap-responsive.min.css" type="text/css">
+	    <link rel="stylesheet" href="/Content/css/font.css" type="text/css">
+        <link rel="SHORTCUT ICON" href="/Content/img/favicon.ico"/>
+	</head>
+	<body>
+			
+		<section class="hero">
+	        <div class="container">
+	            <nav class="navbar">
+	                <div class="navbar-inner">
+	                    <div class="container">
+	                        <a href="/" class="brand">MovieTube<sub>Beta</sub>©</a>
+	                    </div>
+	                </div>
+	            </nav>
+	            <article class="marketing row">              
+	                <div class="offset2 span8">
+	                    <h2 class="headline">
+	                        Indian Movies? Use MovieTube<sub>Beta</sub>©.
+	                    </h2>                                    
+	                    <p class="call-to-action">
+	                        <a href="/Home/Download/" class="btn btn-large btn-blue rounded">Download</a> 
+	                        <a href="#screenshots" class="btn btn-large btn-green rounded">View Screens</a>
+	                    </p>            
+	                    <h4>MovieTube<sub>Beta</sub>© is a desktop application to help you find free Indian movies without searching on the web.</h4>
+                        @*<h6>*Google chrome may notify that MovieTube is not commonly downloaded and could be dangerous after you download. This happens
+                        as MovieTube is a new application and is NOT yet digitally signed. It will take some time before google put MovieTube in to safe list.
+                        Always use your antivirus to scan any application downloaded from internet.If you don't have an antivirus, you can get one free from
+                        <a href="http://free.avg.com/">AVG Antivirus</a>. Also check out google <a href="http://blog.chromium.org/2012/01/all-about-safe-browsing.html">Safe Browsing</a></h6>*@
+	                </div>
+	            </article>
+	        </div>
+	    </section>    
+	    <section class="block">
+	        <div class="container">
+	            <div class="row">
+	                <div class="offset2 span8">
+	                    <h4 class="headline">MovieTube, a simpler way to find and get notified about Indian movies.</h4>
+	                    <p class="headline-caption">
+	                        MovieTube is a simple desktop application that allows you to find new movies without going to all over internet.
+                             It is frquently updated with new publicly available movies and notifies you.
+	                    </p>
+	                    <img src="/Content/img/app_main.png" id="hide-image" class="highlight" alt="placeholder" />
+	                </div>
+	            </div>
+	        </div>
+	    </section>    
+	    <section class="block alt" id="screenshots">
+	        <div class="container">
+	            <div class="row">
+	                <div class="offset2 span8">
+	                    <h4 class="headline">MovieTube is easy to use.</h4>
+	                    <p class="headline-caption">
+	                        You will be a MovieTube master in less than few minutes of using it. You can search the database using any keywords, such as actor name
+	                    </p>
+	                </div>
+	            </div>
+	            <div class="row">
+	                <div class="offset2 span8">
+	                    <div id="myCarousel" class="carousel slide">
+	                        <div class="carousel-inner">
+	                            <div class="item active">                   
+	                                <p>
+                                    <a href="/Content/img/app_main.png">           
+	                                    <img src="/Content/img/app_main.png" class="highlight" alt="placeholder" width="50%" />  
+                                        </a>  
+	                                </p>    
+	                                <article class="carousel-caption">                  
+	                                    <h5><strong>Main view</strong></h5>       
+	                                    <p>Very simple and easy to use interface.</p>                                             
+	                                </article>                                                                         
+	                            </div>
+	                            <div class="item">      
+	                                <p>    
+                                     <a href="/Content/img/systray.png">                            
+	                                    <img src="/Content/img/systray.png" class="highlight" alt="placeholder" width="50%"/>    
+                                        </a>    
+	                                </p>           
+	                                <article class="carousel-caption">                  
+	                                    <h5><strong>System Tray</strong></h5>       
+	                                    <p>Minimizes to system tray and keep you notified about new movies</p>                                            
+	                                </article>
+	                            </div>
+                                  <div class="item">                    
+	                                <p>      
+                                      <a href="/Content/img/malayalam.png">                                       
+	                                    <img src="/Content/img/malayalam.png" class="highlight" alt="placeholder" width="50%"/>
+                                        </a>
+	                                </p>      
+	                                <article class="carousel-caption">                        
+	                                    <h5><strong>Regional Movies</strong></h5>       
+	                                    <p>Not just Hindi movies</p>                          
+	                                </article>
+	                            </div>
+	                            <div class="item">                    
+	                                <p>
+                                    <a href="/Content/img/suggestions.png">
+	                                    <img src="/Content/img/suggestions.png" class="highlight" alt="placeholder" width="50%"/>
+                                        </a>
+	                                </p>      
+	                                <article class="carousel-caption">                        
+	                                    <h5><strong>Favourites</strong></h5>       
+	                                    <p>Add to favourites</p>                          
+	                                </article>
+	                            </div>
+                                  <div class="item">                    
+	                                <p>   
+                                    <a href="/Content/img/filter.png">
+	                                    <img src="/Content/img/filter.png" class="highlight" alt="placeholder" width="50%"/>
+                                    </a>                                          
+	                                </p>      
+	                                <article class="carousel-caption">                        
+	                                    <h5><strong>Search</strong></h5>       
+	                                    <p>You can easily filter the movies you want to watch using the simple filter functionality</p>                          
+	                                </article>
+	                            </div>
+	                           
+	                        </div> 
+	                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+	                        <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>           
+	                    </div> 
+	                </div>
+	            </div>
+	        </div>
+	    </section>    
+	    <section class="block alt">
+	        <div class="container">
+	            <div class="row">
+	                <div class="offset2 span8">
+	                    <h4 class="headline">MovieTube is being used by movie fans all around the world</h4>               
+	                    <p class="headline-caption">
+	                        We are on the fast track to bring out new exciting features to the MovieTube. We will keep you updated with the developments.
+                            Please feel free to send your suggestions using the feedback option in MovieTube application.
+	                    </p>    
+	                </div>
+	            </div>
+	            <div class="row">                
+	                <p class="center">
+	                    <a href="/Home/Download" class="btn btn-large btn-blue rounded">Download</a>
+	                </p>
+	            </div>
+	        </div>
+        </section>    
+	    <footer>
+	        <div class="container">
+	           <p style="font-size:xx-small"> <a class="brand" href="#">
+	                MovieTube©
+	            
+                </p>
+                
+	        </div>
+	    </footer>	 
+          
+	    <script type="text/javascript" src="/Content/js/jquery-1.10.2.min.js"></script>
+	    <script type="text/javascript" src="/Content/js/Custom.js"></script>  
+        <!-- AddThis Smart Layers BEGIN -->
+<!-- Go to http://www.addthis.com/get/smart-layers to customize -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52acfb231f1b32aa"></script>
+<script type="text/javascript">
+    addthis.layers({
+        'theme': 'transparent',
+        'share': {
+            'position': 'left',
+            'numPreferredServices': 5
+        },
+        'whatsnext': {},
+        'recommended': {}
+    });
+</script>
+<!-- AddThis Smart Layers END --> 
+	</body>
+</html>
+

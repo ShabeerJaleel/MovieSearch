@@ -1,0 +1,13 @@
+﻿@model object
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div ng-show="settings.activeView !== 'watch'">
+    @Html.Partial("_RecipePage",@Model)
+</div>
+
+<div ng-show="settings.activeView === 'watch'">
+    @Html.Partial("_Watch",@Model)
+</div>
+

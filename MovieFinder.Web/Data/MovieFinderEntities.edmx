@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MovieFinderModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="MovieFinderModelStoreContainer">
+          <EntitySet Name="AccessLog" EntityType="MovieFinderModel.Store.AccessLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MovieLink" EntityType="MovieFinderModel.Store.MovieLink" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="AccessLog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UniqueID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IPAddress" Type="varchar" MaxLength="20" />
+          <Property Name="Timestamp" Type="datetime" Nullable="false" />
+          <Property Name="AccessCount" Type="int" Nullable="false" />
+          <Property Name="CountryCode" Type="varchar" MaxLength="50" />
+          <Property Name="ClientTime" Type="datetime" />
+          <Property Name="PCName" Type="varchar" MaxLength="100" />
+          <Property Name="Version" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="MovieLink">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MovieID" Type="int" Nullable="false" />
+          <Property Name="LinkTitle" Type="varchar" Nullable="false" MaxLength="1000" />
+          <Property Name="SiteTitle" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="PageUrl" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="PageSiteID" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="DownloadSiteID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="DowloadUrl" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="FailedAttempts" Type="int" Nullable="false" />
+          <Property Name="LastValidatedWhen" Type="datetime" />
+          <Property Name="Version" Type="int" Nullable="false" />
+          <Property Name="LastValidatedBy" Type="uniqueidentifier" />
+          <Property Name="HasSubtitle" Type="bit" Nullable="false" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MovieFinderModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="MovieFinderEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AccessLogs" EntityType="MovieFinderModel.AccessLog" />
+          <EntitySet Name="MovieLinks" EntityType="MovieFinderModel.MovieLink" />
+        </EntityContainer>
+        <EntityType Name="AccessLog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UniqueID" Type="Guid" Nullable="false" />
+          <Property Name="IPAddress" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Timestamp" Type="DateTime" Nullable="false" />
+          <Property Type="Int32" Name="AccessCount" Nullable="false" />
+          <Property Type="String" Name="CountryCode" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="ClientTime" />
+          <Property Type="String" Name="PCName" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Version" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MovieLink">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="MovieID" Nullable="false" />
+          <Property Type="String" Name="LinkTitle" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SiteTitle" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PageUrl" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PageSiteID" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DownloadSiteID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DowloadUrl" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="FailedAttempts" Nullable="false" />
+          <Property Type="DateTime" Name="LastValidatedWhen" />
+          <Property Type="Int32" Name="Version" Nullable="false" />
+          <Property Type="Guid" Name="LastValidatedBy" />
+          <Property Type="Boolean" Name="HasSubtitle" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MovieFinderModelStoreContainer" CdmEntityContainer="MovieFinderEntities">
+          <EntitySetMapping Name="AccessLogs">
+            <EntityTypeMapping TypeName="MovieFinderModel.AccessLog">
+              <MappingFragment StoreEntitySet="AccessLog">
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="PCName" ColumnName="PCName" />
+                <ScalarProperty Name="ClientTime" ColumnName="ClientTime" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="AccessCount" ColumnName="AccessCount" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MovieLinks">
+            <EntityTypeMapping TypeName="MovieFinderModel.MovieLink">
+              <MappingFragment StoreEntitySet="MovieLink">
+                <ScalarProperty Name="HasSubtitle" ColumnName="HasSubtitle" />
+                <ScalarProperty Name="LastValidatedBy" ColumnName="LastValidatedBy" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="LastValidatedWhen" ColumnName="LastValidatedWhen" />
+                <ScalarProperty Name="FailedAttempts" ColumnName="FailedAttempts" />
+                <ScalarProperty Name="DowloadUrl" ColumnName="DowloadUrl" />
+                <ScalarProperty Name="DownloadSiteID" ColumnName="DownloadSiteID" />
+                <ScalarProperty Name="PageSiteID" ColumnName="PageSiteID" />
+                <ScalarProperty Name="PageUrl" ColumnName="PageUrl" />
+                <ScalarProperty Name="SiteTitle" ColumnName="SiteTitle" />
+                <ScalarProperty Name="LinkTitle" ColumnName="LinkTitle" />
+                <ScalarProperty Name="MovieID" ColumnName="MovieID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="MovieFinderEntities">
+        <EntityTypeShape EntityType="MovieFinderModel.AccessLog" Width="1.5" PointX="0.75" PointY="0.75" Height="1.787985026041667" IsExpanded="true" />
+        <EntityTypeShape EntityType="MovieFinderModel.MovieLink" Width="1.5" PointX="3.375" PointY="0.75" Height="3.1340950520833326" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

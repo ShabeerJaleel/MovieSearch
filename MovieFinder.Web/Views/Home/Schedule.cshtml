@@ -1,0 +1,91 @@
+﻿@using MovieFinder.Web
+@model ScheduleModel
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+<body>
+    <div>
+        <form action="Schedule" method="post">
+        <span>From:</span>
+        <select name="from">
+            @foreach (var d in Model.Dates)
+            {
+                <option value="@d.ToShortDateString()">@d.ToShortDateString()</option>
+            }
+        </select>
+        <span>To:</span>
+        <select name="to">
+            @foreach (var d in Model.Dates)
+            {
+                <option value="@d.ToShortDateString()">@d.ToShortDateString()</option>
+            }
+        </select>
+        <br />
+        <input type="submit" value="Search" />
+        </form>
+    </div>
+    <br />
+    <div>
+        <h3>
+            Schedule</h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Start Time
+                    </th>
+                    <th>
+                        End Time
+                    </th>
+                    <th>
+                        Activity
+                    </th>
+                    <th>
+                        Club
+                    </th>
+                    <th>
+                        Location
+                    </th>
+                    @*<th>Adult</th>
+         <th>Senior</th>
+         </tr>*@
+            </thead>
+            <tbody>
+                @foreach (var s in Model.Activities)
+                {
+
+                    <tr>
+                        <td>
+                            @s.DateText
+                        </td>
+                        <td>
+                            @s.StartTimeText
+                        </td>
+                        <td>
+                            @s.EndTimeText
+                        </td>
+                        <td>
+                            @s.ActivityTitle
+                        </td>
+                        <td>
+                            @s.Club
+                        </td>
+                        <td>
+                            @s.Location
+                        </td>
+                        @* <td>
+       @s.IsAdult
+       </td>
+       <td>
+       @s.IsSeniorCitizen
+       </td>*@
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

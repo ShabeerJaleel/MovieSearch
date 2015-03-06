@@ -1,0 +1,89 @@
+﻿<div ng-show="isActiveView('watch')">
+    <div class="container">
+        <div class="row" >
+            <div class="span7 offset2">
+                <div class="row">
+                <div style="max-width: 600px; max-height: 400px; width: 100%; height: 400px;" >
+                    <object id="flashplayer" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100%"
+                        height="100%" ng-show="settings.playingIndex > -1">
+                        <param name="movie" value="/Content/plugins/player.swf" />
+                        <param name="allowFullScreen" value="true" />
+                        <param name="allowScriptAccess" value="always" />
+                        <param name="autostart" value="true" />
+                        <param name="FlashVars" value='plugins=/Content/plugins/proxy.swf&proxy.list={{movie.JsonLink}}&skin=/Content/plugins/modieus.zip' />
+                        <embed name="flashplayer" src="/Content/plugins/player.swf" type="application/x-shockwave-flash"
+                            allowfullscreen="true" allowscriptaccess="always" width="100%" height="100%"
+                            flashvars='plugins=/Content/plugins/proxy.swf&proxy.list={{movie.JsonLink}}&skin=/Content/plugins/modieus.zip&autostart=true' />
+                    </object>
+                </div>
+                </div>
+                 <div class="row">
+                  <div>
+            <input type="button" class="btn " data-toggle="collapse" data-target="#toggleDemo"
+                value="Toggle Links">
+            </div>
+            <div id="toggleDemo" class="collapse in">
+                    <div class="">
+                        <ul class="list list-inline list-icon-color">
+                            <li ng-repeat="link in movie.Links" class="span2 video-link "><span style="text-decoration: underline;">
+                                {{ link.HostSite}}</span>
+                                <a href="{{link.Url}}"target="_blank">&nbsp;&nbsp;<i class="icon-external-link"></i></a>
+                                <br />
+                                <a href="" ng-click="play($index)" ng-class="{'active' : settings.playingIndex == $index}"><i class="icon-play"></i>&nbsp;Play&nbsp;
+                                <span style="font-size:smaller">{{link.Title}}</span></a> </li>
+                        </ul>
+                    </div>
+                </div>
+                 </div>
+            </div>
+            <div class="span3">
+             <aside class="hidden-phone">
+           
+            <div class="thumb item new animate">
+                <div class="well well-small  shadow-box">
+                    <div class="thumb">
+                        <div class="thumb-header hover-img">
+                            <a class="hover-img" href="{{movie.Url}}">
+                                <img ng-src="{{movie.ImageUrl}}" style="height: 100%;" err-src="/Content/img/no_image.gif" />
+                            </a>
+                        </div>
+                        <div class="thumb-caption">
+                            <div class="fixed-height">
+                                <p>
+                                    {{movie.Title + ' (' + movie.ReleasedYear + ')'}}</p>
+                            </div>
+                            <ul class="list list-inline thumb-meta">
+                                <li class="icon-calendar"><span><small>{{movie.PostedDate}}</small></span></li>
+                                <li class="pull-right"><a class="icon-user"><span>{{movie.PostedBy}}</span></a></li>
+                            </ul>
+                            <ul class="list list-inline thumb-meta">
+                                <li><a href="#" class="icon-heart"></a><span>1</span></li>
+                                <li class="icon-eye-open"><span>1</span></li>
+                                <li class="pull-right "><a class="addthis_button_compact" addthis:url="http://shabeerjaleel.com"
+                                    addthis:title="An Example Title" addthis:description="An Example Description"><span
+                                        class="icon-plus">&nbsp;Share</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           <div>
+            <span>{{movie.Description}}</span>
+           </div>
+
+            </aside>
+            
+            </div>
+        </div>
+        <div class="gap">
+        </div>
+        <div class="row">
+        <div class="span6 offset2">
+        @Html.Partial("_UserComment")
+    </div>
+    </div>
+    </div>
+    <div class="gap">
+    </div>
+
+</div>

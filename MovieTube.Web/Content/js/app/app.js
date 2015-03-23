@@ -112,19 +112,22 @@
 
         $scope.Search = function (direct) {
 
-            if (!direct) {
-                setViewProperties($scope.settings.language, $scope.settings.showYear, $scope.settings.language);
-                //load page
-                $timeout(function () {
-                    getThumbs($scope.settings.queryString);
-                }, 10);
-            }
+            //if (!direct) {
+            setViewProperties($scope.settings.language, $scope.settings.showYear, $scope.settings.language);
+            //load page
+            $timeout(function () {
+                getThumbs($scope.settings.queryString);
+            }, 10);
+            //}
         };
 
         $scope.play = function ($index) {
             $scope.movie.Active = $scope.movie.Links[$index];
-            $scope.settings.playingIndex = $index;
-            player.jwPlaylistItem($index);
+            $scope.settings.playingIndex = -1;
+            $timeout(function () {
+                $scope.settings.playingIndex = $index;
+            }, 500);
+            //player.jwPlaylistItem($index);
         }
 
         //end
@@ -162,6 +165,7 @@
             var currentIndex = 0;
             var thumbNails = data.Thumbnails;
             $scope.settings.nextPage = data.NextPage;
+            cancelTimer();
             $scope.stop = $interval(function () {
                 if (thumbNails.length === currentIndex) {
                     cancelTimer();

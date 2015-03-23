@@ -5,9 +5,10 @@ using System.Collections.Specialized;
 using System.Web;
 using System.Threading;
 using HtmlAgilityPack;
+
 namespace MovieTube.Client.Scraper
 {
-    public class Movzap : VideoScraperBase
+    public class HostingBulk : VideoScraperBase
     {
         protected override string OnScrape(string url, HtmlNode elem)
         {
@@ -20,17 +21,17 @@ namespace MovieTube.Client.Scraper
 
         public override string RootUrl
         {
-            get { return "http://movzap.com/"; }
+            get { return "http://hostingbulk.com/"; }
         }
 
         public override string ID
         {
-            get { return "movzap.com"; }
+            get { return "hostingbulk.com"; }
         }
 
         public override string Title
         {
-            get { return "MovZap"; }
+            get { return "HostingBulk"; }
         }
 
         public override ScraperRank Rank
@@ -41,22 +42,17 @@ namespace MovieTube.Client.Scraper
             }
         }
 
-        //public override string SanitizeUrl(string url)
-        //{
-        //    if (!url.ToLower().Contains("http://www.veoh.com") && !url.Contains("/watch/") &&
-        //        !url.Contains("http://veoh.com/videos/"))
-        //        throw new Exception("Unknown format");
-        //    var id =  SubstringBetween(url, url.ToLower().Contains("/videos/") ? "videos/" : "watch/");
-        //    url = String.Format("http://www.veoh.com/watch/{0}", id);
+        public override string GetFlashUrl(string url)
+        {
+            //http://hostingbulk.com/88a22d6520566
+            if (url.ToLower().Contains("embed-"))
+            {
+                url = String.Format("http://hostingbulk.com/{0}.html",
+                    SubstringBetween(url, "embed-", "-"));
 
-        //    return url;
-        //}
+            }
 
-        //public override bool CanProcess(string url)
-        //{
-        //    if (base.CanProcess(url))
-        //        return true;
-        //    return url.ToLower().Contains("veoh");
-        //}
+            return url;
+        }
     }
 }

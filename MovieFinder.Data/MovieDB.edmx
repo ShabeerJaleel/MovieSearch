@@ -47,6 +47,10 @@
           <Property Name="Version" Type="int" Nullable="false" />
           <Property Name="LastValidatedBy" Type="uniqueidentifier" />
           <Property Name="HasSubtitle" Type="bit" Nullable="false" />
+          <Property Name="IsWebSupported" Type="bit" Nullable="false" />
+          <Property Name="IsDesktopSupported" Type="bit" Nullable="false" />
+          <Property Name="PartID" Type="int" />
+          <Property Name="PartIndex" Type="int" />
         </EntityType>
         <Association Name="FK_MovieLink_Movie">
           <End Role="Movie" Type="MovieFinderModel.Store.Movie" Multiplicity="1">
@@ -110,6 +114,10 @@
           <Property Type="Int32" Name="Version" Nullable="false" />
           <Property Type="Guid" Name="LastValidatedBy" />
           <Property Type="Boolean" Name="HasSubtitle" Nullable="false" />
+          <Property Type="Boolean" Name="IsWebSupported" Nullable="false" />
+          <Property Type="Boolean" Name="IsDesktopSupported" Nullable="false" />
+          <Property Type="Int32" Name="PartID" />
+          <Property Type="Int32" Name="PartIndex" />
         </EntityType>
         <Association Name="FK_MovieLink_Movie">
           <End Role="Movie" Type="MovieFinderModel.Movie" Multiplicity="1" />
@@ -144,7 +152,11 @@
             <ScalarProperty Name="VersionChange" ColumnName="VersionChange" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="MovieLinks"><EntityTypeMapping TypeName="MovieFinderModel.MovieLink"><MappingFragment StoreEntitySet="MovieLink">
-            <ScalarProperty Name="HasSubtitle" ColumnName="HasSubtitle" />
+            <ScalarProperty Name="PartIndex" ColumnName="PartIndex" />
+                <ScalarProperty Name="PartID" ColumnName="PartID" />
+                <ScalarProperty Name="IsDesktopSupported" ColumnName="IsDesktopSupported" />
+                <ScalarProperty Name="IsWebSupported" ColumnName="IsWebSupported" />
+                <ScalarProperty Name="HasSubtitle" ColumnName="HasSubtitle" />
                 <ScalarProperty Name="LastValidatedBy" ColumnName="LastValidatedBy" />
                 <ScalarProperty Name="Version" ColumnName="Version" />
                 <ScalarProperty Name="LastValidatedWhen" ColumnName="LastValidatedWhen" />

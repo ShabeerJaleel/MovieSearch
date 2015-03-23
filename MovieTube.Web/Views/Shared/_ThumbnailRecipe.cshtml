@@ -1,7 +1,7 @@
 ﻿<div class="span2 item new animate" ng-repeat="thumbnail in thumbnails"  >
     <div class="well well-small  shadow-box" ">
         <div class="thumb">
-            <div class="thumb-header hover-img">
+            <div class="hover-img">
                 <a class="hover-img" href="{{thumbnail.Url}}" ng-click="activateVideoView($event, thumbnail)">
                     <img ng-src="{{thumbnail.ImageUrl}}" style="height: 100%;" err-src="/Content/img/no_image.gif"  />
                 </a>
@@ -19,7 +19,7 @@
             <div class="thumb-caption">
                 <div class="fixed-height">
                     <p>
-                        {{thumbnail.Title + ' (' + thumbnail.ReleasedYear + ')'}}</p>
+                        {{thumbnail.Title }} <br /> <small> {{thumbnail.Language + '-' + thumbnail.ReleasedYear}}</small> </p>
                 </div>
                 <ul class="list list-inline thumb-meta">
                     <li class="icon-calendar"><span><small>{{thumbnail.PostedDate}}</small></span></li>

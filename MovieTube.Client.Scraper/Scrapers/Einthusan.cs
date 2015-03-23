@@ -33,6 +33,14 @@ namespace MovieTube.Client.Scraper
             get { return "Einthusan"; }
         }
 
+        public override bool IsWebSupported
+        {
+            get
+            {
+                return false;
+            }
+        }
+
         public override ScraperRank Rank
         {
             get

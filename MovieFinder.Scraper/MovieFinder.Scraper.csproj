@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="DataService.cs" />
     <Compile Include="MovieDetailsScrapers\ABCMalayalam.cs" />
+    <Compile Include="MovieDetailsScrapers\ApnaView.cs" />
     <Compile Include="MovieDetailsScrapers\ThiruttuVCD.cs" />
     <Compile Include="MovieDetailsScrapers\TamizhWS.cs" />
     <Compile Include="MovieDetailsScrapers\Einthusan.cs" />

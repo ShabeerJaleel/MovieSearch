@@ -7,6 +7,8 @@ using MovieFinder.Scraper;
 using System.Runtime.InteropServices;
 using System.Web;
 using Client.Scraper;
+using MovieFinder.Data;
+using System.Text.RegularExpressions;
 
 namespace MovieFinder.Test
 {
@@ -27,6 +29,14 @@ namespace MovieFinder.Test
             var s = new ABCMalayalam();
             var movies = s.ScrapeMovies(new List<string>(), new List<int> { 2014});
             
+        }
+
+        [TestMethod]
+        public void ApnaViewTest()
+        {
+            var s = new ApnaView();
+            var movies = s.ScrapeMovies(new List<string>(), new List<int> { 2014 });
+
         }
 
         [TestMethod]
@@ -95,6 +105,42 @@ namespace MovieFinder.Test
             foreach (var vid in videos.Videos)
             {
                 s.ScrapeVideoDetails(vid);
+            }
+        }
+
+
+        [TestMethod]
+        public void DataUpdate()
+        {
+            using (var db = new MovieFinderEntities())
+            {
+                var items = db.MovieLinks.Where(x => x.LinkTitle.Contains("part") && x.PartID == null).ToList();
+
+                
+                int id = 0;
+                foreach (var item in items)
+                {
+                    if(id == item.MovieID)
+                        continue;
+                    id = item.MovieID;
+                    var currentItems = items.Where(x => x.MovieID == id).ToList();
+                    var partId = 0;
+                    foreach (var cItem in currentItems)
+                    {
+                       var index = Convert.ToInt32(Regex.Match(cItem.LinkTitle, @"\d+").Value);
+                       if (index == 1)
+                           partId = cItem.ID;
+                       cItem.PartID = partId;
+                       cItem.PartIndex = index;
+                       var k =0;
+                       while (k++ < 3)
+                       {
+                           db.SaveChanges();
+                           break;
+                       }
+                    }
+
+                }
             }
         }
     }

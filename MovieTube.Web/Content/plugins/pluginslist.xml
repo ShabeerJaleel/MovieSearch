@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <pluginlist loading="Loading Plugins, Please wait...">
+	<plugins url="license.swf"/>
 	<plugins url="gkplugins_cloudyec.swf"/>
 	<plugins url="gkplugins_divxstage.swf"/>
 	<plugins url="gkplugins_divxstream.swf"/>

@@ -92,6 +92,21 @@ namespace MovieFinder.Scraper
         public abstract string ID { get; }
         public abstract string Title { get; }
         public abstract ImagePriorityRank ImagePriority { get; }
+        public virtual bool IsWebSupported
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        public virtual bool IsDesktopSupported
+        {
+            get
+            {
+                return true;
+            }
+        }
     }
 
     public interface IScraperStep

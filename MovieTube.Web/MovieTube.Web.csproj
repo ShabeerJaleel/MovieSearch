@@ -170,10 +170,14 @@
     <Content Include="Content\plugins\gkplugins_vk.swf" />
     <Content Include="Content\plugins\gkplugins_vodlocker.swf" />
     <Content Include="Content\plugins\gkplugins_youtube.swf" />
+    <Content Include="Content\plugins\license.swf" />
     <Content Include="Content\plugins\player.swf" />
     <Content Include="Content\plugins\pluginslist.xml" />
     <Content Include="Content\plugins\plugins_player.jar" />
     <Content Include="Content\plugins\proxy.swf" />
+    <Content Include="crossdomain.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="Content\js\angular-mocks.js" />
     <Content Include="Content\js\angular.js" />
@@ -230,6 +234,8 @@
     <Content Include="Content\plugins\stijl.zip" />
     <Content Include="Content\plugins\stormtrooper.zip" />
     <Content Include="Views\Shared\_UserComment.cshtml" />
+    <None Include="Content\plugins\.htaccess" />
+    <None Include="Content\plugins\license.php" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MovieFinder.Data\MovieFinder.Data.csproj">

@@ -1,0 +1,2 @@
+RewriteEngine on
+RewriteRule ^gkplugins_license.swf$ license.php [NC]

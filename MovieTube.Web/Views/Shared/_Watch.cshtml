@@ -1,4 +1,4 @@
-﻿<div ng-show="isActiveView('watch')">
+﻿<div >
     <div class="container">
         <div class="row" >
             <div class="span7 offset2">
@@ -10,10 +10,10 @@
                         <param name="allowFullScreen" value="true" />
                         <param name="allowScriptAccess" value="always" />
                         <param name="autostart" value="true" />
-                        <param name="FlashVars" value='plugins=/Content/plugins/proxy.swf&proxy.list={{movie.JsonLink}}&skin=/Content/plugins/modieus.zip' />
+                        <param name="FlashVars" value='plugins=/Content/plugins/proxy.swf&proxy.link={{movie.Active.Url}}&skin=/Content/plugins/modieus.zip' />
                         <embed name="flashplayer" src="/Content/plugins/player.swf" type="application/x-shockwave-flash"
                             allowfullscreen="true" allowscriptaccess="always" width="100%" height="100%"
-                            flashvars='plugins=/Content/plugins/proxy.swf&proxy.list={{movie.JsonLink}}&skin=/Content/plugins/modieus.zip&autostart=true' />
+                            flashvars='plugins=/Content/plugins/proxy.swf&proxy.link={{movie.Active.Url}}&skin=/Content/plugins/modieus.zip&autostart=true' />
                     </object>
                 </div>
                 </div>

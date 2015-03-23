@@ -3,11 +3,11 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div ng-show="settings.activeView !== 'watch'">
+<div  ng-class="{'hidden' : isActiveView('watch')}" class="" >
     @Html.Partial("_RecipePage",@Model)
 </div>
 
-<div ng-show="settings.activeView === 'watch'">
+<div ng-class="{'hidden' : !isActiveView('watch')}"  class="animate hidden ">
     @Html.Partial("_Watch",@Model)
 </div>
 

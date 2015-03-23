@@ -95,6 +95,22 @@ namespace  MovieTube.Client.Scraper
         {
             return url.ToLower().Contains(RootUrl.ToLower());
         }
+
+        public virtual bool IsWebSupported
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        public virtual bool IsDesktopSupported
+        {
+            get
+            {
+                return true;
+            }
+        }
     }
 
     public class WebClientEx : WebClient

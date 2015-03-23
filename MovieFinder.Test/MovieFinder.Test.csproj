@@ -33,6 +33,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Fizzler, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fizzler.0.9.3\lib\net35\Fizzler.dll</HintPath>
     </Reference>
@@ -67,6 +74,10 @@
       <Project>{937D938A-DA5A-410C-A972-161E2E93A83D}</Project>
       <Name>Client.Scraper</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MovieFinder.Data\MovieFinder.Data.csproj">
+      <Project>{70784D58-80D0-473E-AE15-3F80077AC1AA}</Project>
+      <Name>MovieFinder.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MovieFinder.Scraper\MovieFinder.Scraper.csproj">
       <Project>{D9910073-2FFF-4334-BFA2-709824F624F3}</Project>
       <Name>MovieFinder.Scraper</Name>
@@ -80,6 +91,7 @@
     <Content Include="HTMLPage1.htm" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

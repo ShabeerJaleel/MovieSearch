@@ -24,7 +24,7 @@ namespace MovieTube.Web.Models
         public string Title { get; set; }
         public string PostedDate { get; set; }
         public string PostedBy { get; set; }
-        public string LangaugeCode { get; set; }
+        public string Language { get; set; }
         public int ReleasedYear { get; set; }
     }
 
@@ -57,13 +57,28 @@ namespace MovieTube.Web.Models
          }
     }
 
-    public class VideoLinkVm
+    public class VideoLinkVm : IComparable<VideoLinkVm>
     {
+        public int ID { get; set; }
         public string Title { get; set; }
         public string HostSite { get; set; }
         public string Url { get; set; }
+        public int? PartID { get; set; }
+        public int? PartIndex { get; set; }
 
-      
+        public int CompareTo(VideoLinkVm other)
+        {
+            if(this.PartID == null && other.PartID == null)
+                return other.ID.CompareTo(this.ID);
+            if (this.PartID == null && other.PartID != null)
+                return -1;
+            if (this.PartID != null && other.PartID == null)
+                return 1;
+            if (this.PartID == other.PartID)
+                return this.PartIndex.Value.CompareTo(other.PartIndex.Value);
+
+            return other.ID.CompareTo(this.ID);
+        }
     }
 
     public class SearchResult

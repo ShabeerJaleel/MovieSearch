@@ -76,8 +76,8 @@
     <Compile Include="Scrapers\VodLocker.cs" />
     <Compile Include="Scrapers\Gorillavid.cs" />
     <Compile Include="Scrapers\Vk.cs" />
-    <Compile Include="Scrapers\Movzap.cs" />
     <Compile Include="Scrapers\HostingBulk.cs" />
+    <Compile Include="Scrapers\Movzap.cs" />
     <Compile Include="Scrapers\Veoh.cs" />
     <Compile Include="Scrapers\Played.cs" />
     <Compile Include="Scrapers\StageVu.cs" />

@@ -23,7 +23,8 @@ namespace MovieFinder.Scraper
             new Hindi4ULink(),
             new ThriruttuVCD(),
             new TamizhWS(),
-            new India4movie()
+            new India4movie(),
+            new ApnaView()
         };
 
         protected List<ScrapedMovie> allMovies = new List<ScrapedMovie>();
@@ -121,6 +122,7 @@ namespace MovieFinder.Scraper
     public enum ImagePriorityRank
     {
         ABC = 1,
+        ApnaView,
         Tamizh,
         TVCD,
         HL4U,

@@ -31,7 +31,7 @@ namespace MovieTube.Web.Controllers
                       .ToList()
                       .Select(x => new SearchResult
                       {
-                          name = x.Title + " ( " + repository.GetLanguage(x.LangaugeCode) + ") - " + x.ReleasedYear,
+                          name = x.Title + " ( " + x.Language + ") - " + x.ReleasedYear,
                           id = x.Title
                       }).ToList();
 

@@ -63,7 +63,7 @@ namespace MovieTube.Data
                                PostedBy = "Admin",
                                PostedDate = x.CreateDate.ToShortDateString(),
                                Title = x.Name,
-                               LangaugeCode = x.LanguageCode,
+                               Language = GetLanguage(x.LanguageCode),
                                ReleasedYear = x.ReleaseDate.Year,
                                Id = x.UniqueID,
                                Url = String.Format("{0}/Watch/{1}/{2}/{3}/{4}",RootUrl,
@@ -84,7 +84,7 @@ namespace MovieTube.Data
             {
                 try
                 {
-                    return  db.Movies.Where(x => x.UniqueID == id)
+                    var a =  db.Movies.Where(x => x.UniqueID == id)
                               .Include(x => x.MovieLinks)
                               .ToList()
                               .Select(x => new MovieVm{
@@ -93,17 +93,22 @@ namespace MovieTube.Data
                                    Description = x.Description,
                                    PostedDate = x.CreateDate.ToShortDateString(),
                                    Title = x.Name,
-                                   LangaugeCode = x.LanguageCode,
+                                   Language = GetLanguage(x.LanguageCode),
                                    ReleasedYear = x.ReleaseDate.Year,
                                    Id = x.UniqueID,
                                    Url = String.Format("{0}/Watch/{1}/{2}/{3}/{4}", RootUrl,
                                    GetLanguage(x.LanguageCode), x.ReleaseDate.Year, x.UniqueID, x.Name),
-                                   Links = x.MovieLinks.Select(y => new VideoLinkVm{
+                                   Links = x.MovieLinks.Where(z => z.IsWebSupported).Select(y => new VideoLinkVm{
                                         HostSite = y.DownloadSiteID,
                                         Title = ShortenLinkTitle(y.LinkTitle),
-                                        Url = VideoScraperBase.GetScraper(y.DowloadUrl).GetFlashUrl(y.DowloadUrl)
+                                        Url = VideoScraperBase.GetScraper(y.DowloadUrl).GetFlashUrl(y.DowloadUrl),
+                                        ID = y.ID,
+                                        PartID = y.PartID,
+                                        PartIndex = y.PartIndex
                                    }).ToList()
                               }).FirstOrDefault();
+                    a.Links.Sort();
+                    return a;
                 }
                 catch
                 {
@@ -111,6 +116,8 @@ namespace MovieTube.Data
                 }
             }
         }
+
+       
 
         private string ShortenLinkTitle(string title)
         {

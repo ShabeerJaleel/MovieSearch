@@ -27,6 +27,10 @@ namespace MovieFinder.Data
         public int Version { get; set; }
         public Nullable<System.Guid> LastValidatedBy { get; set; }
         public bool HasSubtitle { get; set; }
+        public bool IsWebSupported { get; set; }
+        public bool IsDesktopSupported { get; set; }
+        public Nullable<int> PartID { get; set; }
+        public Nullable<int> PartIndex { get; set; }
     
         public virtual Movie Movie { get; set; }
     }

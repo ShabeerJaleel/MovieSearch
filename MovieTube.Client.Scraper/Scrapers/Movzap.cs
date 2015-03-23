@@ -5,10 +5,9 @@ using System.Collections.Specialized;
 using System.Web;
 using System.Threading;
 using HtmlAgilityPack;
-
 namespace MovieTube.Client.Scraper
 {
-    public class HostingBulk : VideoScraperBase
+    public class Movzap : VideoScraperBase
     {
         protected override string OnScrape(string url, HtmlNode elem)
         {
@@ -21,17 +20,17 @@ namespace MovieTube.Client.Scraper
 
         public override string RootUrl
         {
-            get { return "http://hostingbulk.com/"; }
+            get { return "http://movzap.com/"; }
         }
 
         public override string ID
         {
-            get { return "hostingbulk.com"; }
+            get { return "movzap.com"; }
         }
 
         public override string Title
         {
-            get { return "HostingBulk"; }
+            get { return "MovZap"; }
         }
 
         public override ScraperRank Rank
@@ -42,22 +41,18 @@ namespace MovieTube.Client.Scraper
             }
         }
 
-        //public override string SanitizeUrl(string url)
-        //{
-        //    if (!url.ToLower().Contains("http://www.veoh.com") && !url.Contains("/watch/") &&
-        //        !url.Contains("http://veoh.com/videos/"))
-        //        throw new Exception("Unknown format");
-        //    var id =  SubstringBetween(url, url.ToLower().Contains("/videos/") ? "videos/" : "watch/");
-        //    url = String.Format("http://www.veoh.com/watch/{0}", id);
+        public override string GetFlashUrl(string url)
+        {
+            //http://movzap.com/88a22d6520566
+            if (url.ToLower().Contains("embed-"))
+            {
+                url = String.Format("http://movzap.com/{0}.html", 
+                    SubstringBetween(url, "embed-", "-"));
+                    
+            }
 
-        //    return url;
-        //}
+            return url;
+        }
 
-        //public override bool CanProcess(string url)
-        //{
-        //    if (base.CanProcess(url))
-        //        return true;
-        //    return url.ToLower().Contains("veoh");
-        //}
     }
 }

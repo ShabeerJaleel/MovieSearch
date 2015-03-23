@@ -27,7 +27,13 @@ namespace MovieTube.Client.Scraper
             return new Uri(HttpUtility.UrlDecode(url)).AbsoluteUri;
         }
 
-      
+        public override bool IsWebSupported
+        {
+            get
+            {
+                return false;
+            }
+        }
 
         public override string RootUrl
         {

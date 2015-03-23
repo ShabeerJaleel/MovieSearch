@@ -16,11 +16,6 @@
 }
 
 
-/*.center {
-    width: 50% !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-}*/
 
 html {
     overflow-y: scroll; 
@@ -191,7 +186,7 @@ padding-left: 0;
 
 .thumb-caption .fixed-height
 {
-    height: 40px;
+    height: 60px;
     overflow: hidden;
     font-weight: bold;
 }

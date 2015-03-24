@@ -126,6 +126,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
+    <Compile Include="Services\ConfigProvider.cs" />
+    <Compile Include="Services\IConfigProvider.cs" />
+    <Compile Include="Services\IImageUrlBuilder.cs" />
+    <Compile Include="Services\ImageUrlBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -143,6 +147,7 @@
     <Content Include="Content\js\app\app.js" />
     <Content Include="Content\js\boostrap.min.js" />
     <Content Include="Content\js\bootstrap3-typeahead.js" />
+    <Content Include="Content\js\flash_detect.js" />
     <Content Include="Content\js\gkListbox.js" />
     <Content Include="Content\js\gkpluginsAPI.js" />
     <Content Include="Content\js\jquery.js" />
@@ -193,6 +198,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\img\poster\" />
     <Folder Include="scripts\" />
   </ItemGroup>
   <ItemGroup>

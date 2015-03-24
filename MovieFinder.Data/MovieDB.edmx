@@ -29,6 +29,7 @@
           <Property Name="Version" Type="int" Nullable="false" />
           <Property Name="VersionChange" Type="int" Nullable="false" />
           <Property Name="ImageScrapperID" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="ImageLocalUrl" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="MovieLink">
           <Key>
@@ -95,6 +96,7 @@
           <NavigationProperty Name="MovieLinks" Relationship="MovieFinderModel.FK_MovieLink_Movie" FromRole="Movie" ToRole="MovieLink" />
           <Property Type="String" Name="UniqueID" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="ImageScrapperID" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ImageLocalUrl" MaxLength="500" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="MovieLink">
           <Key>
@@ -138,6 +140,7 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="MovieFinderModelStoreContainer" CdmEntityContainer="MovieFinderEntities">
           <EntitySetMapping Name="Movies"><EntityTypeMapping TypeName="MovieFinderModel.Movie"><MappingFragment StoreEntitySet="Movie">
+                <ScalarProperty Name="ImageLocalUrl" ColumnName="ImageLocalUrl" />
                 <ScalarProperty Name="ImageScrapperID" ColumnName="ImageScrapperID" />
                 <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />

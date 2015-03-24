@@ -6,12 +6,23 @@ using MovieTube.Web.Models;
 using MovieFinder.Data;
 using System.Data.Entity;
 using MovieTube.Client.Scraper;
+using System.IO;
+using MovieTube.Web.Services;
 
 namespace MovieTube.Data
 {
     public class Repository  : IRepository
     {
         private readonly int ThumbsPerPage = 20;
+        private readonly IConfigProvider confProvider;
+        private readonly IImageUrlBuilder imgUrlBuilder;
+
+
+        public Repository()
+        {
+            this.confProvider = new ConfigProvider();
+            this.imgUrlBuilder = new ImageUrlBuilder();
+        }
 
         public ThumbNailVm List(string term, string language, int? year, int? page)
         {
@@ -59,14 +70,14 @@ namespace MovieTube.Data
                            .ToList()
                            .Select(x => new MovieThumbnailVm
                            {
-                               ImageUrl = x.ImageUrl,
+                               ImageUrl = String.IsNullOrWhiteSpace(x.ImageLocalUrl) ? x.ImageUrl : imgUrlBuilder.Build(x.ImageLocalUrl),
                                PostedBy = "Admin",
                                PostedDate = x.CreateDate.ToShortDateString(),
                                Title = x.Name,
                                Language = GetLanguage(x.LanguageCode),
                                ReleasedYear = x.ReleaseDate.Year,
                                Id = x.UniqueID,
-                               Url = String.Format("{0}/Watch/{1}/{2}/{3}/{4}",RootUrl,
+                               Url = String.Format("{0}/Watch/{1}/{2}/{3}/{4}",confProvider.RootUrl,
                                GetLanguage(x.LanguageCode), x.ReleaseDate.Year, x.UniqueID, x.Name)
                            }).ToList();
                     return m;
@@ -88,7 +99,7 @@ namespace MovieTube.Data
                               .Include(x => x.MovieLinks)
                               .ToList()
                               .Select(x => new MovieVm{
-                                   ImageUrl = x.ImageUrl,
+                                   ImageUrl = String.IsNullOrWhiteSpace(x.ImageLocalUrl) ? x.ImageUrl : imgUrlBuilder.Build(x.ImageLocalUrl),
                                    PostedBy = "Admin",
                                    Description = x.Description,
                                    PostedDate = x.CreateDate.ToShortDateString(),
@@ -96,7 +107,7 @@ namespace MovieTube.Data
                                    Language = GetLanguage(x.LanguageCode),
                                    ReleasedYear = x.ReleaseDate.Year,
                                    Id = x.UniqueID,
-                                   Url = String.Format("{0}/Watch/{1}/{2}/{3}/{4}", RootUrl,
+                                   Url = String.Format("{0}/Watch/{1}/{2}/{3}/{4}", confProvider.RootUrl,
                                    GetLanguage(x.LanguageCode), x.ReleaseDate.Year, x.UniqueID, x.Name),
                                    Links = x.MovieLinks.Where(z => z.IsWebSupported).Select(y => new VideoLinkVm{
                                         HostSite = y.DownloadSiteID,
@@ -145,14 +156,6 @@ namespace MovieTube.Data
                     return "Tamil";
                 default:
                     return "Unknown";
-            }
-        }
-
-        private string RootUrl
-        {
-            get
-            {
-                return HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
             }
         }
     }

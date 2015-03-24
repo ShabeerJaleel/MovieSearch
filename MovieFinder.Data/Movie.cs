@@ -31,6 +31,7 @@ namespace MovieFinder.Data
         public int VersionChange { get; set; }
         public string UniqueID { get; set; }
         public string ImageScrapperID { get; set; }
+        public string ImageLocalUrl { get; set; }
     
         public virtual ICollection<MovieLink> MovieLinks { get; set; }
     }

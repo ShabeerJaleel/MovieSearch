@@ -452,6 +452,11 @@ namespace MovieFinder.ScraperClient
 
         #endregion
 
+        private void buttonFetchImage_Click(object sender, EventArgs e)
+        {
+
+        }
+
       
        
 

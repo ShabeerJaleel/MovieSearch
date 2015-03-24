@@ -22,8 +22,9 @@
                 nextPage: data.thumbInfo.NextPage,
                 showMoreLink: data.thumbInfo.NextPage > 0,
                 showYear: true,
-                playingIndex: -1
-            };
+                playingIndex: -1,
+                flashInstalled: FlashDetect.installed
+           };
 
 
             //year list

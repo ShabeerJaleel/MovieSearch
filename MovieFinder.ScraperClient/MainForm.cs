@@ -280,6 +280,12 @@ namespace MovieFinder.ScraperClient
 
                         db.SaveChanges();
 
+                        if (String.IsNullOrWhiteSpace(dbMovie.ImageLocalUrl))
+                        {
+                            if(new ImageScrapperService().CopyImageToLocal(dbMovie, ConfigurationManager.AppSettings["ImagePath"]));
+                                db.SaveChanges();
+                        }
+
                         foreach (var l in movie.Links)
                         {
                             if (!db.MovieLinks.Any(x => x.DowloadUrl == l.DownloadUrl))
@@ -307,6 +313,8 @@ namespace MovieFinder.ScraperClient
                             dbMovie.ModifiedDate = DateTime.Now;
                             db.SaveChanges();
                         }
+
+
                     }
 
                     movies.Add(movie);
@@ -450,18 +458,13 @@ namespace MovieFinder.ScraperClient
                 this.buttonHL4U.Enabled = this.buttonExport.Enabled = this.buttonValidateLinks.Enabled = enable;
         }
 
-        #endregion
 
         private void buttonFetchImage_Click(object sender, EventArgs e)
         {
-
+            new ImageScrapperService().Run(ConfigurationManager.AppSettings["ImagePath"]);
         }
 
-      
-       
-
-     
-
+        #endregion
        
     }
 

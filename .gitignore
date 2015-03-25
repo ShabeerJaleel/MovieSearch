@@ -4,6 +4,7 @@ TestResults
 
 /MovieFinder.Web/bin
 
+
 /*.suo
 /MovieFinder.Data/bin/Release
 /MovieFinder.Data/obj/Release
@@ -65,3 +66,6 @@ TestResults
 /MovieTube.UpService/bin/MovieTube.UpService.vshost.exe.manifest
 /MovieTube.UpService/bin
 /MovieTube.Web/bin
+
+
+/MovieTube.Web/Content/img/poster

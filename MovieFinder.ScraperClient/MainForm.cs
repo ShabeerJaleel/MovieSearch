@@ -274,6 +274,7 @@ namespace MovieFinder.ScraperClient
                             {
                                 dbMovie.ImageUrl = movie.ImageUrl;
                                 dbMovie.ImageScrapperID = movie.Scraper.ID;
+                                dbMovie.ImageLocalUrl = null;
                                 modified = true;
                             }
                         }
@@ -282,7 +283,7 @@ namespace MovieFinder.ScraperClient
 
                         if (String.IsNullOrWhiteSpace(dbMovie.ImageLocalUrl))
                         {
-                            if(new ImageScrapperService().CopyImageToLocal(dbMovie, ConfigurationManager.AppSettings["ImagePath"]));
+                            if(new ImageScrapperService().CopyImageToLocal(dbMovie, ConfigurationManager.AppSettings["ImagePath"]))
                                 db.SaveChanges();
                         }
 

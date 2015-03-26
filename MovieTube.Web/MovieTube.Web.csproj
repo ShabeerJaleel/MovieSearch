@@ -242,6 +242,7 @@
     <Content Include="Views\Shared\_UserComment.cshtml" />
     <None Include="Content\plugins\.htaccess" />
     <None Include="Content\plugins\license.php" />
+    <Content Include="Views\Shared\_Player.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MovieFinder.Data\MovieFinder.Data.csproj">

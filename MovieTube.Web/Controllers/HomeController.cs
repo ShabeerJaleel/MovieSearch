@@ -40,5 +40,10 @@ namespace MovieTube.Web.Controllers
             return View("Index", (object)d);
         }
 
+        public ActionResult Player()
+        {
+            return View("_Player");
+        }
+
     }
 }

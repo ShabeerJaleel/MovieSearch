@@ -179,7 +179,7 @@ namespace MovieFinder.ScraperClient
             EnableDisable(false);
 
             var yrs = new List<int>();
-            for(var i = this.numericUpDown1.Value; i <= 2014; i++)
+            for(var i = this.numericUpDown1.Value; i <= 2015; i++)
                 yrs.Add((int)i);
 
             NewDBVersion = GetDBVersion() + 1;

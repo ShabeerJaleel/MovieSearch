@@ -85,11 +85,12 @@
                 getData(url)
                     .then(function (data) {
                         $scope.movie = data;
-                        $scope.settings.playingIndex = 0;
+                        //$scope.settings.playingIndex = 0;
+                        $scope.play(0);
                     });
 
             } else {
-                $scope.settings.playingIndex = 0;
+                    $scope.play(0);// $scope.settings.playingIndex = 0;
             }
         }
 
@@ -124,10 +125,24 @@
 
         $scope.play = function ($index) {
             $scope.movie.Active = $scope.movie.Links[$index];
-            $scope.settings.playingIndex = -1;
-            $timeout(function () {
-                $scope.settings.playingIndex = $index;
-            }, 500);
+            angular.element(document.getElementById('player')).empty().append(
+            '<object id="flashplayer" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100%"' +
+                        'height="100%" >' +
+                        '<param name="movie" value="/Content/plugins/player.swf" />' +
+                        '<param name="allowFullScreen" value="true" />' +
+                        '<param name="allowScriptAccess" value="always" />' +
+                        '<param name="autostart" value="true" />' +
+                        '<param name="FlashVars" value="plugins=/Content/plugins/proxy.swf&proxy.link=' + $scope.movie.Active.Url + '&skin=/Content/plugins/modieus.zip" />' +
+                        '<embed name="flashplayer" src="/Content/plugins/player.swf" type="application/x-shockwave-flash"' +
+                         '   allowfullscreen="true" allowscriptaccess="always" width="100%" height="100%"' +
+                          '  flashvars="plugins=/Content/plugins/proxy.swf&proxy.link=' + $scope.movie.Active.Url + '&skin=/Content/plugins/modieus.zip&autostart=true"' +
+                           '  />' +
+                    '</object>');
+            $scope.settings.playingIndex = $index;
+            //$scope.settings.playingIndex = -1;
+            //$timeout(function () {
+            // $scope.settings.playingIndex = $index;
+            //}, 500);
             //player.jwPlaylistItem($index);
         }
 
@@ -215,22 +230,23 @@
         }
     });
 
-    app.directive("watchView", function () {
-        return {
-            //templateUrl: '/home/player'
-            template: '<object id="flashplayer" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100%"' +
-                        'height="100%" >' +
-                        '<param name="movie" value="/Content/plugins/player.swf" />' + 
-                        '<param name="allowFullScreen" value="true" />' + 
-                        '<param name="allowScriptAccess" value="always" />' + 
-                        '<param name="autostart" value="true" />' +
-                        '<param name="FlashVars" value="plugins=/Content/plugins/proxy.swf&proxy.link=' + scope.movie.Active.Url + '&skin=/Content/plugins/modieus.zip" />' + 
-                        '<embed name="flashplayer" src="/Content/plugins/player.swf" type="application/x-shockwave-flash"'  + 
-                         '   allowfullscreen="true" allowscriptaccess="always" width="100%" height="100%"'  + 
-                          '  flashvars="plugins=/Content/plugins/proxy.swf&proxy.link=' + scope.movie.Active.Url +'&skin=/Content/plugins/modieus.zip&autostart=true"' +
-                           '  />' +
-                    '</object>'
-        }
-    });
+    //    app.directive("watchView", function ($compile) {
+    //        return function (scope, elm, attrs) {
+    //            //templateUrl: '/home/player'
+    //            '<object id="flashplayer" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100%"' +
+    //                        'height="100%" >' +
+    //                        '<param name="movie" value="/Content/plugins/player.swf" />' +
+    //                        '<param name="allowFullScreen" value="true" />' +
+    //                        '<param name="allowScriptAccess" value="always" />' +
+    //                        '<param name="autostart" value="true" />' +
+    //                        '<param name="FlashVars" value="plugins=/Content/plugins/proxy.swf&proxy.link=' + scope.movie.Active.Url + '&skin=/Content/plugins/modieus.zip" />' +
+    //                        '<embed name="flashplayer" src="/Content/plugins/player.swf" type="application/x-shockwave-flash"' +
+    //                         '   allowfullscreen="true" allowscriptaccess="always" width="100%" height="100%"' +
+    //                          '  flashvars="plugins=/Content/plugins/proxy.swf&proxy.link=' + scope.movie.Active.Url + '&skin=/Content/plugins/modieus.zip&autostart=true"' +
+    //                           '  />' +
+    //                    '</object>';
+
+    //        }
+    //    });
 
 } ());

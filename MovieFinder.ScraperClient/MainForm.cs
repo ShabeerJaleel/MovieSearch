@@ -301,7 +301,9 @@ namespace MovieFinder.ScraperClient
                                     DowloadUrl = l.DownloadUrl,
                                     DownloadSiteID = l.DownloadSiteID,
                                     Version = NewDBVersion,
-                                    HasSubtitle = movie.Scraper.Title == "EIH"
+                                    HasSubtitle = movie.Scraper.Title == "EIH",
+                                    IsWebSupported = true,
+                                    IsDesktopSupported = true
                                 });
                                 db.SaveChanges();
                                 modified = true;

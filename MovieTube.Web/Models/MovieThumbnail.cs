@@ -59,10 +59,24 @@ namespace MovieTube.Web.Models
 
     public class VideoLinkVm : IComparable<VideoLinkVm>
     {
+        private string url;
         public int ID { get; set; }
         public string Title { get; set; }
         public string HostSite { get; set; }
-        public string Url { get; set; }
+        public string Url {
+            get
+            {
+                return this.url;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    this.url = value;// value.Replace("&", "%26");
+                }
+            }
+        }
+
         public int? PartID { get; set; }
         public int? PartIndex { get; set; }
 

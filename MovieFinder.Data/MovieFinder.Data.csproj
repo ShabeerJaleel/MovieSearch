@@ -69,6 +69,9 @@
     <Compile Include="MovieLink.cs">
       <DependentUpon>MovieDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Plugin.cs">
+      <DependentUpon>MovieDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

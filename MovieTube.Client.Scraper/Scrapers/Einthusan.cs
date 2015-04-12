@@ -48,5 +48,11 @@ namespace MovieTube.Client.Scraper
                 return ScraperRank.Einthusan;
             }
         }
+
+        public override string GetFlashUrl(string url)
+        {
+            return String.Format("http://www.einthusan.com/movies/watch.php?id={0}", 
+                SubstringBetween(url, "id="));
+        }
     }
 }

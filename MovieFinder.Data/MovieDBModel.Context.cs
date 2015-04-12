@@ -27,5 +27,6 @@ namespace MovieFinder.Data
     
         public DbSet<Movie> Movies { get; set; }
         public DbSet<MovieLink> MovieLinks { get; set; }
+        public DbSet<Plugin> Plugins { get; set; }
     }
 }

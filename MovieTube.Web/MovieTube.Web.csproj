@@ -155,6 +155,7 @@
     <Content Include="Content\plugins\gkplugins_divxstage.swf" />
     <Content Include="Content\plugins\gkplugins_divxstream.swf" />
     <Content Include="Content\plugins\gkplugins_dwnso.swf" />
+    <Content Include="Content\plugins\gkplugins_einthusan.swf" />
     <Content Include="Content\plugins\gkplugins_flashxtv.swf" />
     <Content Include="Content\plugins\gkplugins_gorillavid.swf" />
     <Content Include="Content\plugins\gkplugins_hostingbulk.swf" />

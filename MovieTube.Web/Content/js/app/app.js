@@ -64,6 +64,10 @@
             return id === $scope.settings.activeView;
         }
 
+        $scope.showMovieDetails= function (id) {
+            return $scope.movie !== undefined;
+        }
+
         $scope.activateThumbView = function (id, showYear, language) {
 
             setViewProperties(id, showYear, language);
@@ -80,17 +84,16 @@
             setViewProperties("watch", false, $scope.settings.language);
 
             if (thumbNail) {
-                $scope.movie = {};
+               // $scope.movie = {};
                 var url = "/api/Query/Movie/?id=" + thumbNail.Id;
                 getData(url)
                     .then(function (data) {
                         $scope.movie = data;
-                        //$scope.settings.playingIndex = 0;
                         $scope.play(0);
                     });
 
             } else {
-                    $scope.play(0);// $scope.settings.playingIndex = 0;
+                    $scope.play(0);
             }
         }
 
@@ -124,6 +127,7 @@
         };
 
         $scope.play = function ($index) {
+            $scope.settings.playingIndex = $index;
             $scope.movie.Active = $scope.movie.Links[$index];
             angular.element(document.getElementById('player')).empty().append(
             '<object id="flashplayer" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100%"' +
@@ -132,10 +136,12 @@
                         '<param name="allowFullScreen" value="true" />' +
                         '<param name="allowScriptAccess" value="always" />' +
                         '<param name="autostart" value="true" />' +
-                        '<param name="FlashVars" value="plugins=/Content/plugins/proxy.swf&proxy.link=' + $scope.movie.Active.Url + '&skin=/Content/plugins/modieus.zip" />' +
+                        '<param name="FlashVars" value="plugins=/Content/plugins/proxy.swf&proxy.link=' 
+                        + $scope.movie.Active.Url + '&skin=/Content/plugins/modieus.zip" />' +
                         '<embed name="flashplayer" src="/Content/plugins/player.swf" type="application/x-shockwave-flash"' +
                          '   allowfullscreen="true" allowscriptaccess="always" width="100%" height="100%"' +
-                          '  flashvars="plugins=/Content/plugins/proxy.swf&proxy.link=' + $scope.movie.Active.Url + '&skin=/Content/plugins/modieus.zip&autostart=true"' +
+                          '  flashvars="plugins=/Content/plugins/proxy.swf&proxy.link=' 
+                          + $scope.movie.Active.Url + '&skin=/Content/plugins/modieus.zip&autostart=true"' +
                            '  />' +
                     '</object>');
             $scope.settings.playingIndex = $index;
@@ -229,24 +235,4 @@
             }
         }
     });
-
-    //    app.directive("watchView", function ($compile) {
-    //        return function (scope, elm, attrs) {
-    //            //templateUrl: '/home/player'
-    //            '<object id="flashplayer" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100%"' +
-    //                        'height="100%" >' +
-    //                        '<param name="movie" value="/Content/plugins/player.swf" />' +
-    //                        '<param name="allowFullScreen" value="true" />' +
-    //                        '<param name="allowScriptAccess" value="always" />' +
-    //                        '<param name="autostart" value="true" />' +
-    //                        '<param name="FlashVars" value="plugins=/Content/plugins/proxy.swf&proxy.link=' + scope.movie.Active.Url + '&skin=/Content/plugins/modieus.zip" />' +
-    //                        '<embed name="flashplayer" src="/Content/plugins/player.swf" type="application/x-shockwave-flash"' +
-    //                         '   allowfullscreen="true" allowscriptaccess="always" width="100%" height="100%"' +
-    //                          '  flashvars="plugins=/Content/plugins/proxy.swf&proxy.link=' + scope.movie.Active.Url + '&skin=/Content/plugins/modieus.zip&autostart=true"' +
-    //                           '  />' +
-    //                    '</object>';
-
-    //        }
-    //    });
-
 } ());

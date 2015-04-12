@@ -8,6 +8,7 @@
         <EntityContainer Name="MovieFinderModelStoreContainer">
           <EntitySet Name="Movie" EntityType="MovieFinderModel.Store.Movie" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MovieLink" EntityType="MovieFinderModel.Store.MovieLink" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Plugin" EntityType="MovieFinderModel.Store.Plugin" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_MovieLink_Movie" Association="MovieFinderModel.Store.FK_MovieLink_Movie">
             <End Role="Movie" EntitySet="Movie" />
             <End Role="MovieLink" EntitySet="MovieLink" />
@@ -53,6 +54,14 @@
           <Property Name="PartID" Type="int" />
           <Property Name="PartIndex" Type="int" />
         </EntityType>
+        <EntityType Name="Plugin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Version" Type="int" Nullable="false" />
+        </EntityType>
         <Association Name="FK_MovieLink_Movie">
           <End Role="Movie" Type="MovieFinderModel.Store.Movie" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -78,6 +87,7 @@
             <End Role="Movie" EntitySet="Movies" />
             <End Role="MovieLink" EntitySet="MovieLinks" />
           </AssociationSet>
+          <EntitySet Name="Plugins" EntityType="MovieFinderModel.Plugin" />
         </EntityContainer>
         <EntityType Name="Movie">
           <Key>
@@ -133,6 +143,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Plugin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="String" Name="ID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Version" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -173,6 +191,15 @@
             <ScalarProperty Name="MovieID" ColumnName="MovieID" />
             <ScalarProperty Name="SiteTitle" ColumnName="SiteTitle" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Plugins">
+            <EntityTypeMapping TypeName="MovieFinderModel.Plugin">
+              <MappingFragment StoreEntitySet="Plugin">
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -201,6 +228,7 @@
           <ConnectorPoint PointX="2.25" PointY="2.9708968098958328" />
           <ConnectorPoint PointX="3" PointY="2.9708968098958328" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="MovieFinderModel.Plugin" Width="1.5" PointX="5.375" PointY="0.75" Height="1.5956835937499996" />
       </Diagram>
     </Diagrams>
   </Designer>

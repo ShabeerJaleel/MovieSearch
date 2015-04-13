@@ -220,8 +220,8 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Shared\_CustomScript.cshtml" />
     <Content Include="Views\Shared\_IncludeScript.cshtml" />
-    <Content Include="Views\Shared\_RecipePage.cshtml" />
-    <Content Include="Views\Shared\_ThumbnailRecipe.cshtml" />
+    <Content Include="Views\Shared\_ThumbList.cshtml" />
+    <Content Include="Views\Shared\_MovieThumbnail.cshtml" />
     <None Include="Content\js\angular.min.js.map" />
     <Content Include="Views\Shared\_IncludeCSS.cshtml" />
     <Content Include="Views\Shared\_Watch.cshtml" />

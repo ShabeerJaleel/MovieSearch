@@ -14,7 +14,13 @@ namespace MovieTube.Web.Controllers
     public class QueryController : ApiController
     {
       
-        private readonly Repository repository = new Repository();
+        private readonly IRepository repository ;
+
+        public QueryController()
+        {
+            this.repository = new Repository();
+        }
+        
         [HttpGet]
         //[CacheOutput(ClientTimeSpan = 3600, ServerTimeSpan = 3600)]
         public ThumbNailVm List(string language, int? year, int? page, string term = "")

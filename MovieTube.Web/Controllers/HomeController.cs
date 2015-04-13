@@ -11,7 +11,13 @@ namespace MovieTube.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly Repository repository = new Repository();
+        private readonly IRepository repository;
+
+        public HomeController()
+        {
+            repository = new Repository();
+        }
+
         //
         // GET: /Home/
        // [OutputCache(Duration=3600)]

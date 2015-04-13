@@ -14,6 +14,7 @@ namespace MovieTube.Data
     public class Repository  : IRepository
     {
         private readonly int ThumbsPerPage = 20;
+        private readonly int ThumbsPerLang = 6;
         private readonly IConfigProvider confProvider;
         private readonly IImageUrlBuilder imgUrlBuilder;
 
@@ -32,10 +33,10 @@ namespace MovieTube.Data
             if (String.IsNullOrWhiteSpace(term) &&
                 String.IsNullOrWhiteSpace(language))
             {
-                movies = QueryMovies(term, "ml", year, page, ThumbsPerPage);
-                movies.AddRange(QueryMovies(term, "hi", year, page, ThumbsPerPage));
-                movies.AddRange(QueryMovies(term, "ta", year, page, ThumbsPerPage));
-                movies.AddRange(QueryMovies(term, "te", year, page, ThumbsPerPage));
+                movies = QueryMovies(term, "ml", year, page, ThumbsPerLang);
+                movies.AddRange(QueryMovies(term, "hi", year, page, ThumbsPerLang));
+                movies.AddRange(QueryMovies(term, "ta", year, page, ThumbsPerLang));
+                movies.AddRange(QueryMovies(term, "te", year, page, ThumbsPerLang));
 
             }
             else
@@ -128,8 +129,6 @@ namespace MovieTube.Data
             }
         }
 
-       
-
         private string ShortenLinkTitle(string title)
         {
             if (String.IsNullOrWhiteSpace(title))
@@ -141,8 +140,7 @@ namespace MovieTube.Data
             return "Part - " + text;
         }
 
-
-        public string GetLanguage(string langCode)
+        private string GetLanguage(string langCode)
         {
             switch (langCode)
             {

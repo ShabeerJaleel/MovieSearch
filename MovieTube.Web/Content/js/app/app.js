@@ -6,65 +6,21 @@
 
     var app = angular.module("movieApp", ['ngAnimate']);
 
-    app.controller("MainController", function ($scope, $http, $log, $interval, $timeout) {
+    app.config(function ($locationProvider) {
+        $locationProvider.html5Mode({ 
+            enabled: true,
+            requireBase: false
+        });
+    });
+    app.controller("MainController", function ($scope, $http, $log, $interval, $timeout, $location) {
 
-        (function () {
-
-            var data = initService().bootData;
-            $scope.thumbnails = data.thumbInfo.Thumbnails;
-
-            $scope.settings = {
-                activeView: 'latest',
-                language: '',
-                showWatchView: false,
-                selectedYear: '',
-                queryString: '',
-                nextPage: data.thumbInfo.NextPage,
-                showMoreLink: data.thumbInfo.NextPage > 0,
-                showYear: true,
-                playingIndex: -1,
-                flashInstalled: FlashDetect.installed
-            };
-
-
-            //year list
-            $scope.years = [];
-            for (var i = 2014; i > 1971; i--)
-                $scope.years.push(i);
-            $scope.years.push(1960);
-            $scope.years.push(1950);
-            $scope.years.push(1920);
-            $scope.years.push('Clear');
-
-            var searchResult = {};
-
-            //some jquery
-            $('input.typeahead').typeahead(
-            {
-                source: function (query, process) {
-                    $scope.queryString = query;
-                    getData("/api/Query/Search/?term=" + query + "&language=" + $scope.settings.language)
-                     .then(function (data) {
-                         searchResult = data;
-                         process(data);
-                     });
-                },
-                afterSelect: function (query) {
-                    $scope.settings.queryString = query.id;
-                    $scope.Search(true);
-                },
-                autoSelect: false,
-                showHintOnFocus: true
-            });
-
-        } ());
 
         //scope methods
         $scope.isActiveView = function (id) {
             return id === $scope.settings.activeView;
         }
 
-        $scope.showMovieDetails= function (id) {
+        $scope.showMovieDetails = function (id) {
             return $scope.movie !== undefined;
         }
 
@@ -81,10 +37,12 @@
             if (event)
                 event.preventDefault();
 
+
+            updateUrl(thumbNail.Url);
             setViewProperties("watch", false, $scope.settings.language);
 
             if (thumbNail) {
-               // $scope.movie = {};
+                // $scope.movie = {};
                 var url = "/api/Query/Movie/?id=" + thumbNail.Id;
                 getData(url)
                     .then(function (data) {
@@ -93,7 +51,7 @@
                     });
 
             } else {
-                    $scope.play(0);
+                $scope.play(0);
             }
         }
 
@@ -136,11 +94,11 @@
                         '<param name="allowFullScreen" value="true" />' +
                         '<param name="allowScriptAccess" value="always" />' +
                         '<param name="autostart" value="true" />' +
-                        '<param name="FlashVars" value="plugins=/Content/plugins/proxy.swf&proxy.link=' 
+                        '<param name="FlashVars" value="plugins=/Content/plugins/proxy.swf&proxy.link='
                         + $scope.movie.Active.Url + '&skin=/Content/plugins/modieus.zip" />' +
                         '<embed name="flashplayer" src="/Content/plugins/player.swf" type="application/x-shockwave-flash"' +
                          '   allowfullscreen="true" allowscriptaccess="always" width="100%" height="100%"' +
-                          '  flashvars="plugins=/Content/plugins/proxy.swf&proxy.link=' 
+                          '  flashvars="plugins=/Content/plugins/proxy.swf&proxy.link='
                           + $scope.movie.Active.Url + '&skin=/Content/plugins/modieus.zip&autostart=true"' +
                            '  />' +
                     '</object>');
@@ -212,7 +170,76 @@
                         return response.data;
                     });
         };
+
+        var updateUrl = function (url) {
+
+            var origin = location.protocol + "//" + location.host;
+            $location.path(url.replace(origin, ""));
+        };
         //end
+
+        (function () {
+
+
+            var data = initService().bootData;
+            $scope.thumbnails = data.thumbInfo.Thumbnails;
+            $scope.movie = data.movie;
+
+            $scope.settings = {
+                activeView: data.activeView,
+                language: '',
+                showWatchView: data.showWatchView,
+                selectedYear: '',
+                queryString: '',
+                nextPage: data.thumbInfo.NextPage,
+                showMoreLink: data.thumbInfo.NextPage > 0,
+                showYear: true,
+                playingIndex: -1,
+                flashInstalled: FlashDetect.installed
+            };
+
+
+            //year list
+            $scope.years = [];
+            for (var i = 2014; i > 1971; i--)
+                $scope.years.push(i);
+            $scope.years.push(1960);
+            $scope.years.push(1950);
+            $scope.years.push(1920);
+            $scope.years.push('Clear');
+
+            var searchResult = {};
+
+            //some jquery
+            $('input.typeahead').typeahead(
+            {
+                source: function (query, process) {
+                    $scope.queryString = query;
+                    getData("/api/Query/Search/?term=" + query + "&language=" + $scope.settings.language)
+                     .then(function (data) {
+                         searchResult = data;
+                         process(data);
+                     });
+                },
+                afterSelect: function (query) {
+                    $scope.settings.queryString = query.id;
+                    $scope.Search(true);
+                },
+                autoSelect: false,
+                showHintOnFocus: true
+            });
+
+            //
+            if ($scope.settings.showWatchView) {
+                setViewProperties("watch", false, $scope.settings.language);
+                $scope.play(0);
+            }
+
+        } ());
+
+
+
+
 
     });
 

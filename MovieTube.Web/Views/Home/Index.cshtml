@@ -3,11 +3,12 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div  ng-class="{'hidden' : isActiveView('watch')}" ng-cloak >
+<div  ng-show="!isActiveView('watch')" ng-cloak >
     @Html.Partial("_ThumbList",@Model)
 </div>
 
-<div ng-class="{'hidden' : !isActiveView('watch')}"  class="animate hidden" ng-cloak>
+<div ng-show="isActiveView('watch')"  class="animate" ng-cloak>
     @Html.Partial("_Watch",@Model)
 </div>
+
 

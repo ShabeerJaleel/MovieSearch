@@ -26,8 +26,8 @@ namespace MovieTube.Web.Controllers
             var tn = repository.List(String.Empty, String.Empty, null, null);
             var d = new JavaScriptSerializer().Serialize(new
             {
-                showWatchNav = false,
-                selectWatch = false,
+                showWatchView = false,
+                activeView = "",
                 thumbInfo = tn
             });
             return View("Index",(object)d);
@@ -35,12 +35,14 @@ namespace MovieTube.Web.Controllers
 
         public ActionResult Watch(string language, int year, string id, string title)
         {
-            var tn = new ThumbNailVm();
+           var movie = repository.QueryMovie(id);
+
             var d = new JavaScriptSerializer().Serialize(new
             {
-                showWatchNav = true,
-                selectWatch = true,
-                thumbInfo = tn
+                showWatchView = true,
+                activeView = "watch",
+                movie = movie,
+                thumbInfo = new ThumbNailVm()
             });
 
             return View("Index", (object)d);

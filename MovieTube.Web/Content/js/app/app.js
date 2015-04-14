@@ -128,14 +128,14 @@
         }
 
         var getThumbs = function (searchTerm) {
-            var query = "language=" +
+            var query = "/?language=" +
                       $scope.settings.language + "&year=" + $scope.settings.selectedYear +
-                      "&page=" + $scope.settings.nextPage + "&term=" +  (searchTerm ? searchTerm : "");
-            var url = "/api/Query/List/?" + query;
+                      "&page=" + $scope.settings.nextPage + "&term=" + (searchTerm ? searchTerm : "");
+            var url = "/api/Query/List" + query;
 
             getData(url)
             .then(function (data) {
-                updateUrl("?" + query);
+                updateUrl(query);
                 showThumbs(data);
             });
         };
@@ -171,9 +171,12 @@
         };
 
         var updateUrl = function (url) {
+            if (url.indexOf(location.host) > -1) { //full url
+                var origin = location.protocol + "//" + location.host;
+                url = url.replace(origin, "");
+            } 
 
-            var origin = location.protocol + "//" + location.host;
-            $location.url(url.replace(origin, ""));
+            $location.url(url);
         };
         //end
 

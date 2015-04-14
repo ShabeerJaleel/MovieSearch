@@ -7,7 +7,7 @@
     var app = angular.module("movieApp", ['ngAnimate']);
 
     app.config(function ($locationProvider) {
-        $locationProvider.html5Mode({ 
+        $locationProvider.html5Mode({
             enabled: true,
             requireBase: false
         });
@@ -128,15 +128,14 @@
         }
 
         var getThumbs = function (searchTerm) {
-
-            var url = "/api/Query/List/?" + "language=" +
+            var query = "language=" +
                       $scope.settings.language + "&year=" + $scope.settings.selectedYear +
-                      "&page=" + $scope.settings.nextPage;
-            if (searchTerm)
-                url += "&term=" + searchTerm;
+                      "&page=" + $scope.settings.nextPage + "&term=" +  (searchTerm ? searchTerm : "");
+            var url = "/api/Query/List/?" + query;
 
             getData(url)
             .then(function (data) {
+                updateUrl("?" + query);
                 showThumbs(data);
             });
         };
@@ -174,7 +173,7 @@
         var updateUrl = function (url) {
 
             var origin = location.protocol + "//" + location.host;
-            $location.path(url.replace(origin, ""));
+            $location.url(url.replace(origin, ""));
         };
         //end
 

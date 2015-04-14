@@ -21,13 +21,13 @@ namespace MovieTube.Web.Controllers
         //
         // GET: /Home/
        // [OutputCache(Duration=3600)]
-        public ActionResult Index()
+        public ActionResult Index(int? year, int? page, string term = "", string language = "")
         {
-            var tn = repository.List(String.Empty, String.Empty, null, null);
+            var tn = repository.List(term,language,year, page);
             var d = new JavaScriptSerializer().Serialize(new
             {
                 showWatchView = false,
-                activeView = "",
+                activeView = language,
                 thumbInfo = tn
             });
             return View("Index",(object)d);

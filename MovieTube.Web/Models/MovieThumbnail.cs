@@ -26,6 +26,8 @@ namespace MovieTube.Web.Models
         public string PostedBy { get; set; }
         public string Language { get; set; }
         public int ReleasedYear { get; set; }
+        public int ViewCount { get; set; }
+        public int LikeCount { get; set; }
     }
 
     public class MovieVm : MovieThumbnailVm

@@ -47,7 +47,7 @@ namespace MovieTube.Web.Controllers
         //[CacheOutput(ClientTimeSpan = 3600, ServerTimeSpan = 3600)]
         public MovieVm Movie(string id)
         {
-            return repository.QueryMovie(id);
+            return repository.QueryMovie(id, true);
         }
 
        

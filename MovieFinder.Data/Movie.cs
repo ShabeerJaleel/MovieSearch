@@ -21,6 +21,7 @@ namespace MovieFinder.Data
     
         public int ID { get; set; }
         public string Name { get; set; }
+        public string UniqueID { get; set; }
         public string ImageUrl { get; set; }
         public System.DateTime ReleaseDate { get; set; }
         public string LanguageCode { get; set; }
@@ -29,9 +30,10 @@ namespace MovieFinder.Data
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public int Version { get; set; }
         public int VersionChange { get; set; }
-        public string UniqueID { get; set; }
         public string ImageScrapperID { get; set; }
         public string ImageLocalUrl { get; set; }
+        public int ViewCount { get; set; }
+        public int LikeCount { get; set; }
     
         public virtual ICollection<MovieLink> MovieLinks { get; set; }
     }

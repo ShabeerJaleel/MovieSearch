@@ -79,7 +79,9 @@ namespace MovieTube.Data
                                ReleasedYear = x.ReleaseDate.Year,
                                Id = x.UniqueID,
                                Url = String.Format("{0}/Watch/{1}/{2}/{3}/{4}",confProvider.RootUrl,
-                               GetLanguage(x.LanguageCode), x.ReleaseDate.Year, x.UniqueID, x.Name)
+                               GetLanguage(x.LanguageCode), x.ReleaseDate.Year, x.UniqueID, x.Name),
+                               ViewCount = x.ViewCount,
+                               LikeCount = x.LikeCount
                            }).ToList();
                     return m;
                 }
@@ -90,13 +92,13 @@ namespace MovieTube.Data
             }
         }
 
-        public MovieVm QueryMovie(string id)
+        public MovieVm QueryMovie(string id, bool updateStat = false)
         {
             using (var db = new MovieFinderEntities())
             {
                 try
                 {
-                    var a =  db.Movies.Where(x => x.UniqueID == id)
+                    var movie =  db.Movies.Where(x => x.UniqueID == id)
                               .Include(x => x.MovieLinks)
                               .ToList()
                               .Select(x => new MovieVm{
@@ -110,6 +112,8 @@ namespace MovieTube.Data
                                    Id = x.UniqueID,
                                    Url = String.Format("{0}/Watch/{1}/{2}/{3}/{4}", confProvider.RootUrl,
                                    GetLanguage(x.LanguageCode), x.ReleaseDate.Year, x.UniqueID, x.Name),
+                                   ViewCount = x.ViewCount,
+                                   LikeCount = x.LikeCount,
                                    Links = x.MovieLinks.Where(z => z.IsWebSupported).Select(y => new VideoLinkVm{
                                         HostSite = y.DownloadSiteID,
                                         Title = ShortenLinkTitle(y.LinkTitle),
@@ -119,8 +123,16 @@ namespace MovieTube.Data
                                         PartIndex = y.PartIndex
                                    }).ToList()
                               }).FirstOrDefault();
-                    a.Links.Sort();
-                    return a;
+                    movie.Links.Sort();
+                    
+                    if (updateStat)
+                    {
+                        var m = db.Movies.Single(x => x.UniqueID == id);
+                        m.ViewCount++;
+                        db.SaveChanges();
+                    }
+                    
+                    return movie;
                 }
                 catch
                 {

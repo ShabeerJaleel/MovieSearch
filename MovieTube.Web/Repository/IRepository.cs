@@ -10,6 +10,6 @@ namespace MovieTube.Data
     {
         ThumbNailVm List(string term, string language, int? year, int? page);
         List<MovieThumbnailVm> QueryMovies(string term, string langCode, int? year, int? page, int count);
-        MovieVm QueryMovie(string id);
+        MovieVm QueryMovie(string id, bool updateStat = false);
     }
 }

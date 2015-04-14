@@ -31,6 +31,8 @@
           <Property Name="VersionChange" Type="int" Nullable="false" />
           <Property Name="ImageScrapperID" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="ImageLocalUrl" Type="varchar" MaxLength="500" />
+          <Property Name="ViewCount" Type="int" Nullable="false" />
+          <Property Name="LikeCount" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="MovieLink">
           <Key>
@@ -81,33 +83,14 @@
     <edmx:ConceptualModels>
       <Schema Namespace="MovieFinderModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="MovieFinderEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Movies" EntityType="MovieFinderModel.Movie" />
           <EntitySet Name="MovieLinks" EntityType="MovieFinderModel.MovieLink" />
+          <EntitySet Name="Plugins" EntityType="MovieFinderModel.Plugin" />
+          <EntitySet Name="Movies" EntityType="MovieFinderModel.Movie" />
           <AssociationSet Name="FK_MovieLink_Movie" Association="MovieFinderModel.FK_MovieLink_Movie">
             <End Role="Movie" EntitySet="Movies" />
             <End Role="MovieLink" EntitySet="MovieLinks" />
           </AssociationSet>
-          <EntitySet Name="Plugins" EntityType="MovieFinderModel.Plugin" />
         </EntityContainer>
-        <EntityType Name="Movie">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="ImageUrl" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="ReleaseDate" Type="DateTime" Nullable="false" />
-          <Property Name="LanguageCode" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="true" />
-          <Property Name="Description" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
-          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
-          <Property Name="ModifiedDate" Type="DateTime" />
-          <Property Name="Version" Type="Int32" Nullable="false" />
-          <Property Name="VersionChange" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="MovieLinks" Relationship="MovieFinderModel.FK_MovieLink_Movie" FromRole="Movie" ToRole="MovieLink" />
-          <Property Type="String" Name="UniqueID" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ImageScrapperID" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ImageLocalUrl" MaxLength="500" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="MovieLink">
           <Key>
             <PropertyRef Name="ID" />
@@ -115,7 +98,6 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MovieID" Type="Int32" Nullable="false" />
           <Property Name="SiteTitle" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="Movie" Relationship="MovieFinderModel.FK_MovieLink_Movie" FromRole="MovieLink" ToRole="Movie" />
           <Property Type="String" Name="DownloadSiteID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="PageUrl" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="PageSiteID" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -130,10 +112,40 @@
           <Property Type="Boolean" Name="IsDesktopSupported" Nullable="false" />
           <Property Type="Int32" Name="PartID" />
           <Property Type="Int32" Name="PartIndex" />
+          <NavigationProperty Name="Movie" Relationship="MovieFinderModel.FK_MovieLink_Movie" FromRole="MovieLink" ToRole="Movie" />
+        </EntityType>
+        <EntityType Name="Plugin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="String" Name="ID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Version" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="UniqueID" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ImageUrl" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="ReleaseDate" Nullable="false" />
+          <Property Type="String" Name="LanguageCode" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
+          <Property Type="DateTime" Name="ModifiedDate" />
+          <Property Type="Int32" Name="Version" Nullable="false" />
+          <Property Type="Int32" Name="VersionChange" Nullable="false" />
+          <Property Type="String" Name="ImageScrapperID" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ImageLocalUrl" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MovieLinks" Relationship="MovieFinderModel.FK_MovieLink_Movie" FromRole="Movie" ToRole="MovieLink" />
+          <Property Type="Int32" Name="ViewCount" Nullable="false" />
+          <Property Type="Int32" Name="LikeCount" Nullable="false" />
         </EntityType>
         <Association Name="FK_MovieLink_Movie">
-          <End Role="Movie" Type="MovieFinderModel.Movie" Multiplicity="1" />
-          <End Role="MovieLink" Type="MovieFinderModel.MovieLink" Multiplicity="*" />
+          <End Type="MovieFinderModel.Movie" Role="Movie" Multiplicity="1" />
+          <End Type="MovieFinderModel.MovieLink" Role="MovieLink" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Movie">
               <PropertyRef Name="ID" />
@@ -143,35 +155,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Plugin">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="String" Name="ID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Version" Nullable="false" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="MovieFinderModelStoreContainer" CdmEntityContainer="MovieFinderEntities">
-          <EntitySetMapping Name="Movies"><EntityTypeMapping TypeName="MovieFinderModel.Movie"><MappingFragment StoreEntitySet="Movie">
-                <ScalarProperty Name="ImageLocalUrl" ColumnName="ImageLocalUrl" />
-                <ScalarProperty Name="ImageScrapperID" ColumnName="ImageScrapperID" />
-                <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-            <ScalarProperty Name="Name" ColumnName="Name" />
-            <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
-            <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
-            <ScalarProperty Name="LanguageCode" ColumnName="LanguageCode" />
-            <ScalarProperty Name="Description" ColumnName="Description" />
-            <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-            <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-            <ScalarProperty Name="Version" ColumnName="Version" />
-            <ScalarProperty Name="VersionChange" ColumnName="VersionChange" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="MovieLinks"><EntityTypeMapping TypeName="MovieFinderModel.MovieLink"><MappingFragment StoreEntitySet="MovieLink">
             <ScalarProperty Name="PartIndex" ColumnName="PartIndex" />
                 <ScalarProperty Name="PartID" ColumnName="PartID" />
@@ -200,6 +189,27 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Movies">
+            <EntityTypeMapping TypeName="MovieFinderModel.Movie">
+              <MappingFragment StoreEntitySet="Movie">
+                <ScalarProperty Name="LikeCount" ColumnName="LikeCount" />
+                <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
+                <ScalarProperty Name="ImageLocalUrl" ColumnName="ImageLocalUrl" />
+                <ScalarProperty Name="ImageScrapperID" ColumnName="ImageScrapperID" />
+                <ScalarProperty Name="VersionChange" ColumnName="VersionChange" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LanguageCode" ColumnName="LanguageCode" />
+                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -222,13 +232,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="MovieDB">
-        <EntityTypeShape EntityType="MovieFinderModel.Movie" Width="1.5" PointX="0.75" PointY="1" Height="3.5186979166666656" IsExpanded="true" />
         <EntityTypeShape EntityType="MovieFinderModel.MovieLink" Width="1.5" PointX="3" PointY="1.5" Height="2.7494921874999996" IsExpanded="true" />
-        <AssociationConnector Association="MovieFinderModel.FK_MovieLink_Movie" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="2.9708968098958328" />
-          <ConnectorPoint PointX="3" PointY="2.9708968098958328" />
-        </AssociationConnector>
         <EntityTypeShape EntityType="MovieFinderModel.Plugin" Width="1.5" PointX="5.375" PointY="0.75" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="MovieFinderModel.Movie" Width="1.5" PointX="0.75" PointY="1.875" Height="3.7109993489583317" />
+        <AssociationConnector Association="MovieFinderModel.FK_MovieLink_Movie" >
+          <ConnectorPoint PointX="2.25" PointY="3.7304996744791659" />
+          <ConnectorPoint PointX="3" PointY="3.7304996744791659" />
+        </AssociationConnector>
       </Diagram>
     </Diagrams>
   </Designer>

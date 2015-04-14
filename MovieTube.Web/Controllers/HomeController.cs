@@ -35,7 +35,7 @@ namespace MovieTube.Web.Controllers
 
         public ActionResult Watch(string language, int year, string id, string title)
         {
-           var movie = repository.QueryMovie(id);
+           var movie = repository.QueryMovie(id, true);
 
             var d = new JavaScriptSerializer().Serialize(new
             {

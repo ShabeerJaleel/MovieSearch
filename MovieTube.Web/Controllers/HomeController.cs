@@ -6,9 +6,11 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using MovieTube.Web.Models;
 using MovieTube.Data;
+using MovieTube.Web.Attributes;
 
 namespace MovieTube.Web.Controllers
 {
+    [UserProfileFilter]
     public class HomeController : Controller
     {
         private readonly IRepository repository;

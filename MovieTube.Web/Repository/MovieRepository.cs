@@ -8,8 +8,9 @@ using System.Data.Entity;
 using MovieTube.Client.Scraper;
 using System.IO;
 using MovieTube.Web.Services;
+using MovieTube.Web.Repository;
 
-namespace MovieTube.Data
+namespace MovieTube.Web.Repository
 {
     public class MovieRepository  : IMovieRepository
     {

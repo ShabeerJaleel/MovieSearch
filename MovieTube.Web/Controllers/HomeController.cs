@@ -5,21 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using MovieTube.Web.Models;
-using MovieTube.Data;
 using MovieTube.Web.Attributes;
 
 namespace MovieTube.Web.Controllers
 {
-    [UserProfileFilter]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        private readonly IMovieRepository repository;
-
-        public HomeController()
-        {
-            repository = new MovieRepository();
-        }
-
+       
         //
         // GET: /Home/
        // [OutputCache(Duration=3600)]

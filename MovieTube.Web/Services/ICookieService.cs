@@ -5,9 +5,9 @@ using System.Text;
 
 namespace MovieTube.Web.Services
 {
-    interface ICookieService
+    public interface ICookieService
     {
-        void AddSessionCookie(Guid id);
-        Guid GetSessionID();
+        string EncryptCookie(Guid id);
+        Guid? DecryptCookie(string token);
     }
 }

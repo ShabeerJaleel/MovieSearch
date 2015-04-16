@@ -7,7 +7,7 @@ using MovieFinder.Data;
 
 namespace MovieTube.Web.Repository
 {
-    interface IUserRepository
+    public interface IUserRepository
     {
         VisitorProfile GetVisitor(Guid id);
         void UpdateVisitor(VisitorProfile model);

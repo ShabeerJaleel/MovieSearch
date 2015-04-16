@@ -7,7 +7,7 @@ using System.Web.Http;
 using MovieTube.Web.Models;
 using MovieFinder.Data;
 using WebAPI.OutputCache;
-using MovieTube.Data;
+using MovieTube.Web.Repository;
 
 namespace MovieTube.Web.Controllers
 {

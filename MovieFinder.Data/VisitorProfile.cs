@@ -20,5 +20,6 @@ namespace MovieFinder.Data
         public string LastAccessedIP { get; set; }
         public string LastAccessedLanguage { get; set; }
         public string LastAccessedUrl { get; set; }
+        public int HitCount { get; set; }
     }
 }

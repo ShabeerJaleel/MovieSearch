@@ -118,6 +118,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\UserProfileFilterAttribute.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QueryController.cs" />
     <Compile Include="Global.asax.cs">
@@ -131,10 +133,13 @@
     <Compile Include="Repository\MovieRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Services\ConfigProvider.cs" />
+    <Compile Include="Services\CookieService.cs" />
     <Compile Include="Services\IConfigProvider.cs" />
     <Compile Include="Services\ICookieService.cs" />
     <Compile Include="Services\IImageUrlBuilder.cs" />
     <Compile Include="Services\ImageUrlBuilder.cs" />
+    <Compile Include="Services\IUserProfileService.cs" />
+    <Compile Include="Services\UserProfileService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />

@@ -69,12 +69,13 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity"/>
           <Property Name="UserID" Type="int" />
           <Property Name="LastAccessedTime" Type="datetime" Nullable="false" />
           <Property Name="LastAccessedIP" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="LastAccessedLanguage" Type="varchar" Nullable="false" MaxLength="2" />
           <Property Name="LastAccessedUrl" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="HitCount" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_MovieLink_Movie">
           <End Role="Movie" Type="MovieFinderModel.Store.Movie" Multiplicity="1">
@@ -172,12 +173,13 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="Guid" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="UserID" />
           <Property Type="DateTime" Name="LastAccessedTime" Nullable="false" />
           <Property Type="String" Name="LastAccessedIP" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="LastAccessedLanguage" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="LastAccessedUrl" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="HitCount" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -237,6 +239,7 @@
           <EntitySetMapping Name="VisitorProfiles">
             <EntityTypeMapping TypeName="MovieFinderModel.VisitorProfile">
               <MappingFragment StoreEntitySet="VisitorProfile">
+                <ScalarProperty Name="HitCount" ColumnName="HitCount" />
                 <ScalarProperty Name="LastAccessedUrl" ColumnName="LastAccessedUrl" />
                 <ScalarProperty Name="LastAccessedLanguage" ColumnName="LastAccessedLanguage" />
                 <ScalarProperty Name="LastAccessedIP" ColumnName="LastAccessedIP" />
@@ -275,7 +278,7 @@
           <ConnectorPoint PointX="2.25" PointY="3.7304996744791659" />
           <ConnectorPoint PointX="3" PointY="3.7304996744791659" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="MovieFinderModel.VisitorProfile" Width="1.5" PointX="5.375" PointY="3.75" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="MovieFinderModel.VisitorProfile" Width="1.5" PointX="5.375" PointY="3.75" Height="2.3648893229166656" />
       </Diagram>
     </Diagrams>
   </Designer>

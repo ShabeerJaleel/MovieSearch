@@ -13,11 +13,11 @@ namespace MovieTube.Web.Controllers
     [UserProfileFilter]
     public class HomeController : Controller
     {
-        private readonly IRepository repository;
+        private readonly IMovieRepository repository;
 
         public HomeController()
         {
-            repository = new Repository();
+            repository = new MovieRepository();
         }
 
         //

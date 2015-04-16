@@ -11,7 +11,7 @@ using MovieTube.Web.Services;
 
 namespace MovieTube.Data
 {
-    public class Repository  : IRepository
+    public class MovieRepository  : IMovieRepository
     {
         private readonly int ThumbsPerPage = 20;
         private readonly int ThumbsPerLang = 6;
@@ -19,7 +19,7 @@ namespace MovieTube.Data
         private readonly IImageUrlBuilder imgUrlBuilder;
 
 
-        public Repository()
+        public MovieRepository()
         {
             this.confProvider = new ConfigProvider();
             this.imgUrlBuilder = new ImageUrlBuilder();

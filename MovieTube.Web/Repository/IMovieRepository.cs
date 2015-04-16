@@ -6,7 +6,7 @@ using MovieTube.Web.Models;
 
 namespace MovieTube.Data
 {
-    interface IRepository
+    interface IMovieRepository
     {
         ThumbNailVm List(string term, string language, int? year, int? page);
         List<MovieThumbnailVm> QueryMovies(string term, string langCode, int? year, int? page, int count);

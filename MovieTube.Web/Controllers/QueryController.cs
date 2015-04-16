@@ -14,11 +14,11 @@ namespace MovieTube.Web.Controllers
     public class QueryController : ApiController
     {
       
-        private readonly IRepository repository ;
+        private readonly IMovieRepository repository ;
 
         public QueryController()
         {
-            this.repository = new Repository();
+            this.repository = new MovieRepository();
         }
         
         [HttpGet]

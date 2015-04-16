@@ -124,11 +124,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\MovieThumbnail.cs" />
+    <Compile Include="Models\VisitorVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\IRepository.cs" />
-    <Compile Include="Repository\Repository.cs" />
+    <Compile Include="Repository\IMovieRepository.cs" />
+    <Compile Include="Repository\IUserRepository.cs" />
+    <Compile Include="Repository\MovieRepository.cs" />
+    <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Services\ConfigProvider.cs" />
     <Compile Include="Services\IConfigProvider.cs" />
+    <Compile Include="Services\ICookieService.cs" />
     <Compile Include="Services\IImageUrlBuilder.cs" />
     <Compile Include="Services\ImageUrlBuilder.cs" />
   </ItemGroup>

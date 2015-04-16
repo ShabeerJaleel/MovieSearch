@@ -9,6 +9,7 @@
           <EntitySet Name="Movie" EntityType="MovieFinderModel.Store.Movie" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MovieLink" EntityType="MovieFinderModel.Store.MovieLink" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Plugin" EntityType="MovieFinderModel.Store.Plugin" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="VisitorProfile" EntityType="MovieFinderModel.Store.VisitorProfile" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_MovieLink_Movie" Association="MovieFinderModel.Store.FK_MovieLink_Movie">
             <End Role="Movie" EntitySet="Movie" />
             <End Role="MovieLink" EntitySet="MovieLink" />
@@ -64,6 +65,17 @@
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="Version" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="VisitorProfile">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="LastAccessedTime" Type="datetime" Nullable="false" />
+          <Property Name="LastAccessedIP" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="LastAccessedLanguage" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="LastAccessedUrl" Type="varchar" Nullable="false" MaxLength="200" />
+        </EntityType>
         <Association Name="FK_MovieLink_Movie">
           <End Role="Movie" Type="MovieFinderModel.Store.Movie" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -90,6 +102,7 @@
             <End Role="Movie" EntitySet="Movies" />
             <End Role="MovieLink" EntitySet="MovieLinks" />
           </AssociationSet>
+          <EntitySet Name="VisitorProfiles" EntityType="MovieFinderModel.VisitorProfile" />
         </EntityContainer>
         <EntityType Name="MovieLink">
           <Key>
@@ -155,6 +168,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="VisitorProfile">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="UserID" />
+          <Property Type="DateTime" Name="LastAccessedTime" Nullable="false" />
+          <Property Type="String" Name="LastAccessedIP" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastAccessedLanguage" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastAccessedUrl" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -210,6 +234,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="VisitorProfiles">
+            <EntityTypeMapping TypeName="MovieFinderModel.VisitorProfile">
+              <MappingFragment StoreEntitySet="VisitorProfile">
+                <ScalarProperty Name="LastAccessedUrl" ColumnName="LastAccessedUrl" />
+                <ScalarProperty Name="LastAccessedLanguage" ColumnName="LastAccessedLanguage" />
+                <ScalarProperty Name="LastAccessedIP" ColumnName="LastAccessedIP" />
+                <ScalarProperty Name="LastAccessedTime" ColumnName="LastAccessedTime" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -239,6 +275,7 @@
           <ConnectorPoint PointX="2.25" PointY="3.7304996744791659" />
           <ConnectorPoint PointX="3" PointY="3.7304996744791659" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="MovieFinderModel.VisitorProfile" Width="1.5" PointX="5.375" PointY="3.75" Height="2.1725878906249996" />
       </Diagram>
     </Diagrams>
   </Designer>

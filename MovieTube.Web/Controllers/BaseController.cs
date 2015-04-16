@@ -33,7 +33,8 @@ namespace MovieTube.Web.Controllers
                 Request.UserHostAddress, Request.Url.PathAndQuery,
                 Request.QueryString["lang"]);
            if(cookie == null)
-               Response.SetCookie(new HttpCookie(Constants.CookieSessionName, cookieService.EncryptCookie(Profile.ID)));
+               Response.SetCookie(new HttpCookie(Constants.CookieSessionName,
+                   cookieService.EncryptCookie(Profile.ID)) { Expires = DateTime.Now.AddYears(100) });
             
             base.OnActionExecuting(filterContext);
         }

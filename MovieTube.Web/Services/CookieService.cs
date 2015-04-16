@@ -10,6 +10,8 @@ namespace MovieTube.Web.Services
     {
         public string EncryptCookie(Guid id)
         {
+            return id.ToString();
+
            return  FormsAuthentication.Encrypt(new FormsAuthenticationTicket(1,
                 Constants.CookieSessionName,
                 DateTime.Now,DateTime.Now.AddYears(100),
@@ -22,6 +24,7 @@ namespace MovieTube.Web.Services
         {
             if (String.IsNullOrWhiteSpace(cookie))
                 return null;
+            return new Guid(cookie);
             var ticket = FormsAuthentication.Decrypt(cookie);
             return new Guid(ticket.UserData);
         }

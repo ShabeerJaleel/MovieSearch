@@ -8,9 +8,11 @@ using MovieTube.Web.Models;
 using MovieFinder.Data;
 using WebAPI.OutputCache;
 using MovieTube.Web.Repository;
+using MovieTube.Web.Attributes;
 
 namespace MovieTube.Web.Controllers
 {
+    [UserProfileFilter]
     public class QueryController : ApiController
     {
       

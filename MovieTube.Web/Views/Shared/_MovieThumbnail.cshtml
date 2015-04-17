@@ -5,16 +5,6 @@
                 <a class="hover-img" href="{{thumbnail.Url}}" ng-click="activateVideoView($event, thumbnail)">
                     <img ng-src="{{thumbnail.ImageUrl}}" style="height: 100%;" err-src="/Content/img/no_image.gif"  />
                 </a>
-                @*<div class="hover-title-bottom list list-inline">
-                    <ul class="hover-title-bottom list list-inline ">
-                        <li><a class="icon-facebook box-icon-to-normal animate-icon-top-to-bottom" href="#">
-                        </a></li>
-                        <li><a class="icon-twitter box-icon-to-normal animate-icon-top-to-bottom" href="#"></a>
-                        </li>
-                        <li><a class="icon-google-plus box-icon-to-normal animate-icon-top-to-bottom" href="#">
-                        </a></li>
-                    </ul>
-                </div>*@
             </div>
             <div class="thumb-caption">
                 <div class="fixed-height">
@@ -28,8 +18,9 @@
                 <ul class="list list-inline thumb-meta">
                     <li><a href="#" class="icon-heart"></a><span>{{thumbnail.LikeCount}}</span></li>
                     <li class="icon-eye-open"><span>{{thumbnail.ViewCount}}</span></li>
-                    <li class="pull-right "><a class="addthis_button_compact" addthis:url="http://shabeerjaleel.com"
-                        addthis:title="An Example Title" addthis:description="An Example Description"><span
+                    <li class="pull-right "><a class="addthis_button_compact" 
+                        addthis:url="{{thumbnail.Url}}"
+                        addthis:title="{{thumbnail.Title}}" addthis:description="{{thumbnail.Title}}"><span
                             class="icon-plus">&nbsp;Share</span></a></li>
                     @*<li class="pull-right"><a href="#" class="icon-flag"></a></li>*@
                 </ul>

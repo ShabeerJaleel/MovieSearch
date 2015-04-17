@@ -9,14 +9,14 @@ using MovieFinder.Data;
 
 namespace MovieTube.Web.Controllers
 {
-    public class BaseController : Controller
+    public class BaseMvcController : Controller
     {
         protected readonly IMovieRepository repository;
         protected readonly IUserRepository userRepository;
         protected readonly ICookieService cookieService;
         protected readonly IUserProfileService userProfileService;
 
-        public BaseController()
+        public BaseMvcController()
         {
             repository = new MovieRepository();
             userRepository = new UserRepository();

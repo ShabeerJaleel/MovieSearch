@@ -9,7 +9,7 @@ using MovieTube.Web.Attributes;
 
 namespace MovieTube.Web.Controllers
 {
-    public class HomeController : BaseController
+    public class HomeController : BaseMvcController
     {
        
         //

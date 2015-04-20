@@ -9,6 +9,7 @@ using MovieTube.Client.Scraper;
 using System.IO;
 using MovieTube.Web.Services;
 using MovieTube.Web.Repository;
+using System.Threading.Tasks;
 
 namespace MovieTube.Web.Repository
 {
@@ -168,6 +169,31 @@ namespace MovieTube.Web.Repository
                 default:
                     return "Unknown";
             }
+        }
+
+
+        public void RemoveLink(string link)
+        {
+            Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    using (var db = new MovieFinderEntities())
+                    {
+                        var ml = db.MovieLinks.FirstOrDefault(x => x.DowloadUrl == link && x.FailedAttempts <= 3);
+                        if (ml != null)
+                        {
+                            if (VideoScraperBase.ValidateUrl(ml.DowloadUrl) == MovieTube.Client.Scraper.ScraperResult.VideoDoesNotExist)
+                            {
+                                ml.FailedAttempts = 5;
+                                ml.LastValidatedBy = new Guid();
+                                db.SaveChanges();
+                            }
+                        }
+                    }
+                }
+                catch { }
+            });
         }
     }
 }

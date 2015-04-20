@@ -44,7 +44,8 @@ function gkPluginsLoaded(){
 function gkMessageHandleRemoveLinkError(msg){
 	var msgError = "File invalid or deleted";
 	if(msg.indexOf(msgError)>0){
-		msg = msgError;
+	    msg = msgError + ". Please try other links, if any";
+	    $.post('/Query/RemoveLink?link=');
 	}
 	return msg;
 }

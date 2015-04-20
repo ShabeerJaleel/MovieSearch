@@ -52,6 +52,12 @@ namespace MovieTube.Web.Controllers
             return repository.QueryMovie(id, true);
         }
 
+        [HttpPost]
+        public void RemoveLink(string link)
+        {
+            repository.RemoveLink(link);
+        }
+
        
     }
 }

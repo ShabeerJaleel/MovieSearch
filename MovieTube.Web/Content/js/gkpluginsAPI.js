@@ -29,7 +29,12 @@ function gkNextLocation(){
 }
 
 function gkMessageHandle(msg){
-	//your custom code
+    var msgError = "File invalid or deleted";
+    if (msg.indexOf(msgError) > 0) {
+        var link = msg.substring(0, msg.indexOf('\n'));
+        $.post('/api/query/removeLink?link=' + link);
+        msg = msg + ". Please try other links, if any";
+    }
 	return msg;
 }
 
@@ -42,12 +47,13 @@ function gkPluginsLoaded(){
 }
 
 function gkMessageHandleRemoveLinkError(msg){
-	var msgError = "File invalid or deleted";
-	if(msg.indexOf(msgError)>0){
-	    msg = msgError + ". Please try other links, if any";
-	    $.post('/Query/RemoveLink?link=');
-	}
-	return msg;
+    var msgError = "File invalid or deleted";
+    if (msg.indexOf(msgError) > 0) {
+        var link = msg.substring(0, msg.indexOf(msgError));
+        $.post('/api/query/removeLink?link=' + link);
+        msg = msg + ". Please try other links, if any";
+    }
+    return msg;
 }
 
 function gkthisMovie(movieName) {

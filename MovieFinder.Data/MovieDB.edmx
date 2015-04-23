@@ -59,17 +59,18 @@
         </EntityType>
         <EntityType Name="Plugin">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="GKName" />
           </Key>
-          <Property Name="ID" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="Version" Type="int" Nullable="false" />
+          <Property Name="GKName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="PluginName" Type="varchar" MaxLength="75" StoreGeneratedPattern="Computed" />
+          <Property Name="SiteID" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="LastUpdatedTime" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="VisitorProfile">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity"/>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="UserID" Type="int" />
           <Property Name="LastAccessedTime" Type="datetime" Nullable="false" />
           <Property Name="LastAccessedIP" Type="varchar" Nullable="false" MaxLength="20" />
@@ -97,13 +98,13 @@
       <Schema Namespace="MovieFinderModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="MovieFinderEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="MovieLinks" EntityType="MovieFinderModel.MovieLink" />
-          <EntitySet Name="Plugins" EntityType="MovieFinderModel.Plugin" />
           <EntitySet Name="Movies" EntityType="MovieFinderModel.Movie" />
           <AssociationSet Name="FK_MovieLink_Movie" Association="MovieFinderModel.FK_MovieLink_Movie">
             <End Role="Movie" EntitySet="Movies" />
             <End Role="MovieLink" EntitySet="MovieLinks" />
           </AssociationSet>
           <EntitySet Name="VisitorProfiles" EntityType="MovieFinderModel.VisitorProfile" />
+          <EntitySet Name="Plugins" EntityType="MovieFinderModel.Plugin" />
         </EntityContainer>
         <EntityType Name="MovieLink">
           <Key>
@@ -127,14 +128,6 @@
           <Property Type="Int32" Name="PartID" />
           <Property Type="Int32" Name="PartIndex" />
           <NavigationProperty Name="Movie" Relationship="MovieFinderModel.FK_MovieLink_Movie" FromRole="MovieLink" ToRole="Movie" />
-        </EntityType>
-        <EntityType Name="Plugin">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="String" Name="ID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Version" Nullable="false" />
         </EntityType>
         <EntityType Name="Movie">
           <Key>
@@ -181,6 +174,15 @@
           <Property Type="String" Name="LastAccessedUrl" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="HitCount" Nullable="false" />
         </EntityType>
+        <EntityType Name="Plugin">
+          <Key>
+            <PropertyRef Name="GKName" />
+          </Key>
+          <Property Type="String" Name="GKName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PluginName" MaxLength="75" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Type="String" Name="SiteID" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="LastUpdatedTime" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -206,15 +208,6 @@
             <ScalarProperty Name="MovieID" ColumnName="MovieID" />
             <ScalarProperty Name="SiteTitle" ColumnName="SiteTitle" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Plugins">
-            <EntityTypeMapping TypeName="MovieFinderModel.Plugin">
-              <MappingFragment StoreEntitySet="Plugin">
-                <ScalarProperty Name="Version" ColumnName="Version" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Movies">
             <EntityTypeMapping TypeName="MovieFinderModel.Movie">
               <MappingFragment StoreEntitySet="Movie">
@@ -249,6 +242,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Plugins">
+            <EntityTypeMapping TypeName="MovieFinderModel.Plugin">
+              <MappingFragment StoreEntitySet="Plugin">
+                <ScalarProperty Name="LastUpdatedTime" ColumnName="LastUpdatedTime" />
+                <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+                <ScalarProperty Name="PluginName" ColumnName="PluginName" />
+                <ScalarProperty Name="GKName" ColumnName="GKName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -272,13 +275,13 @@
     <Diagrams>
       <Diagram Name="MovieDB">
         <EntityTypeShape EntityType="MovieFinderModel.MovieLink" Width="1.5" PointX="3" PointY="1.5" Height="2.7494921874999996" IsExpanded="true" />
-        <EntityTypeShape EntityType="MovieFinderModel.Plugin" Width="1.5" PointX="5.375" PointY="0.75" Height="1.5956835937499996" />
         <EntityTypeShape EntityType="MovieFinderModel.Movie" Width="1.5" PointX="0.75" PointY="1.875" Height="3.7109993489583317" />
         <AssociationConnector Association="MovieFinderModel.FK_MovieLink_Movie" >
           <ConnectorPoint PointX="2.25" PointY="3.7304996744791659" />
           <ConnectorPoint PointX="3" PointY="3.7304996744791659" />
         </AssociationConnector>
         <EntityTypeShape EntityType="MovieFinderModel.VisitorProfile" Width="1.5" PointX="5.375" PointY="3.75" Height="2.3648893229166656" />
+        <EntityTypeShape EntityType="MovieFinderModel.Plugin" Width="1.5" PointX="5.375" PointY="0.75" Height="1.7879850260416674" />
       </Diagram>
     </Diagrams>
   </Designer>

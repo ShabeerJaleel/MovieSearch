@@ -14,8 +14,9 @@ namespace MovieFinder.Data
     
     public partial class Plugin
     {
-        public string ID { get; set; }
-        public string Name { get; set; }
-        public int Version { get; set; }
+        public string GKName { get; set; }
+        public string PluginName { get; set; }
+        public string SiteID { get; set; }
+        public int LastUpdatedTime { get; set; }
     }
 }

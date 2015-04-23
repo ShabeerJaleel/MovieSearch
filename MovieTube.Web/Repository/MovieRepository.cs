@@ -100,8 +100,10 @@ namespace MovieTube.Web.Repository
             {
                 try
                 {
-                    var movie =  db.Movies.Where(x => x.UniqueID == id)
+                    var movie =  db.Movies
                               .Include(x => x.MovieLinks)
+                              .Where(x => x.UniqueID == id &&
+                                  x.MovieLinks.Any(y => y.FailedAttempts < 5))
                               .ToList()
                               .Select(x => new MovieVm{
                                    ImageUrl = String.IsNullOrWhiteSpace(x.ImageLocalUrl) ? x.ImageUrl : imgUrlBuilder.Build(x.ImageLocalUrl),

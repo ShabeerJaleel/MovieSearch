@@ -26,7 +26,7 @@ namespace MovieTube.Client.Scraper
 
         public override string ID
         {
-            get { return "dwn.so"; }
+            get { return ScrapperId.Dwn; }
         }
 
         public override string Title

@@ -49,7 +49,7 @@ namespace MovieTube.Client.Scraper
 
         public override string ID
         {
-            get { return "cloudy.ec"; }
+            get { return ScrapperId.CloudyEC; }
         }
 
         public override string Title

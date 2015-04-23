@@ -60,7 +60,7 @@ namespace MovieTube.Client.Scraper
 
         public override string ID
         {
-            get { return "muchshare.net"; }
+            get { return ScrapperId.MuchShare; }
         }
 
         public override string Title

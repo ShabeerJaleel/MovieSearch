@@ -40,7 +40,7 @@ namespace MovieTube.Client.Scraper
 
         public override string ID
         {
-            get { return "firedrive.com"; }
+            get { return ScrapperId.FireDrive; }
         }
 
         public override string Title

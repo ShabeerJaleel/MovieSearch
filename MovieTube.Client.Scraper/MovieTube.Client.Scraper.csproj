@@ -71,6 +71,7 @@
     </Compile>
     <Compile Include="Scrapers\Cloudy.cs" />
     <Compile Include="Scrapers\Bayfiles.cs" />
+    <Compile Include="Scrapers\ScrapperId.cs" />
     <Compile Include="Scrapers\VideoRaj.cs" />
     <Compile Include="Scrapers\TheVideo.cs" />
     <Compile Include="Scrapers\VodLocker.cs" />

@@ -25,7 +25,7 @@ namespace MovieTube.Client.Scraper
 
         public override string ID
         {
-            get { return "vk.com"; }
+            get { return ScrapperId.Vk; }
         }
 
         public override string Title

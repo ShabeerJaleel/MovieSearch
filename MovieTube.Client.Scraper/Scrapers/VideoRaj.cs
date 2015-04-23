@@ -42,7 +42,7 @@ namespace MovieTube.Client.Scraper
 
         public override string ID
         {
-            get { return "videoraj.ch"; }
+            get { return ScrapperId.VideoRaj; }
         }
 
         public override string Title

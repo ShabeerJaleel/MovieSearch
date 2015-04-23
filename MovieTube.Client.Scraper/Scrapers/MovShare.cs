@@ -49,7 +49,7 @@ namespace MovieTube.Client.Scraper
 
         public override string ID
         {
-            get { return "movshare.net"; }
+            get { return ScrapperId.MovShare; }
         }
 
         public override string Title

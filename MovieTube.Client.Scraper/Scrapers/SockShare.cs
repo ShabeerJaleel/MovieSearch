@@ -31,7 +31,7 @@ namespace MovieTube.Client.Scraper
 
         public override string ID
         {
-            get { return "sockshare.com"; }
+            get { return ScrapperId.SockShare; }
         }
 
         public override string Title

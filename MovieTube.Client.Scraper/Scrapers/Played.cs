@@ -23,7 +23,7 @@ namespace MovieTube.Client.Scraper
 
         public override string ID
         {
-            get { return "played.to"; }
+            get { return ScrapperId.Played; }
         }
 
         public override string Title

@@ -78,7 +78,7 @@ namespace MovieFinder.Scraper
                                             movie.Description = ReadText(dom.Select(".desc_body").Elements.First()).Replace("-", "");
                                             movie.Name = ReadText(e).Replace("\n", "").Replace("\t", "");
                                             movie.Name = Regex.Replace(movie.Name, @"\s*?(?:\(.*?\)|\[.*?\]|\{.*?\})", String.Empty);
-                                            movie.Links.Add(new ScrapedMovieLink(movie.PageUrl, "einthusan", "With Subtitles"));
+                                            movie.Links.Add(new ScrapedMovieLink(movie.PageUrl, "einthusan.com", "With Subtitles"));
                                             allMovies.Add(movie);
                                             var args = new MovieFoundEventArgs(movie);
                                             OnMovieFound(args);

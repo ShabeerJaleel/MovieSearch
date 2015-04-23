@@ -68,7 +68,8 @@ namespace  MovieTube.Client.Scraper
               "sorry, we couldn't find the video you",
               "this+video+requires+",
               "this video has been deleted",
-              "this file has been removed"
+              "this file has been removed",
+              "the video no longer exists"
 
         };
         public string Scrape(string url)

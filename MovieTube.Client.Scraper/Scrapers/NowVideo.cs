@@ -52,7 +52,7 @@ namespace MovieTube.Client.Scraper
 
         public override string ID
         {
-            get { return "nowvideo.sx"; }
+            get { return ScrapperId.NowVideo; }
         }
 
         public override string Title

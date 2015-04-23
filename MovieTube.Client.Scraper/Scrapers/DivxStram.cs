@@ -55,7 +55,7 @@ namespace MovieTube.Client.Scraper
 
         public override string ID
         {
-            get { return "divxstream.net"; }
+            get { return ScrapperId.DivxStream; }
         }
 
         public override string Title

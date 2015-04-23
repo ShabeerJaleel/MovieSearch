@@ -23,7 +23,7 @@ namespace MovieTube.Client.Scraper
 
         public override string ID
         {
-            get { return "bayfiles.net"; }
+            get { return ScrapperId.BayFiles ; }
         }
 
         public override string Title

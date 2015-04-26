@@ -70,7 +70,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="UserID" Type="int" />
           <Property Name="LastAccessedTime" Type="datetime" Nullable="false" />
           <Property Name="LastAccessedIP" Type="varchar" Nullable="false" MaxLength="20" />
